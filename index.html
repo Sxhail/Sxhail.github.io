@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"/>
 <style>
 /* ── TOKENS ── */
 :root {
@@ -74,7 +75,10 @@ body.hov #cur{animation:none;opacity:1;}
   padding:36px 0 28px;
   z-index:100;
   transition:var(--trans);
+  overflow-y:auto;
+  scrollbar-width:none;
 }
+.sidenav::-webkit-scrollbar{display:none;}
 
 .sn-top{padding:0 28px;}
 .sn-name{
@@ -146,6 +150,33 @@ body.hov #cur{animation:none;opacity:1;}
 }
 .sn-icon-link:hover{color:var(--text);border-color:var(--line2);}
 
+/* sidebar info */
+.sn-info{
+  padding:0 28px;
+  margin-bottom:8px;
+}
+.sn-info-section{
+  margin-bottom:18px;
+}
+.sn-info-label{
+  font-size:9px;color:var(--text3);
+  letter-spacing:.14em;text-transform:uppercase;
+  margin-bottom:8px;
+  padding-bottom:6px;
+  border-bottom:1px solid var(--line);
+}
+.sn-info-row{
+  display:flex;justify-content:space-between;
+  align-items:baseline;
+  padding:4px 0;
+  border-bottom:1px solid var(--line);
+  font-size:11px;
+}
+.sn-info-row:last-child{border-bottom:none;}
+.sn-info-key{color:var(--text3);}
+.sn-info-val{color:var(--text2);font-weight:500;text-align:right;}
+.sn-acc{color:var(--accent);}
+
 /* theme btn */
 #theme-btn{
   background:none;border:1px solid var(--line2);
@@ -199,6 +230,14 @@ body.hov #cur{animation:none;opacity:1;}
   justify-content:center;
   padding:80px 72px;
 }
+.hero-layout{
+  display:grid;
+  grid-template-columns:1fr 340px;
+  gap:60px;
+  align-items:center;
+  width:100%;
+}
+.hero-text{}
 .hero-eyebrow{
   font-size:11px;color:var(--text3);
   letter-spacing:.12em;
@@ -219,13 +258,38 @@ body.hov #cur{animation:none;opacity:1;}
 .hero-desc{
   font-size:15px;
   color:var(--text2);
-  max-width:560px;
+  max-width:480px;
   line-height:1.8;
   font-weight:300;
   margin-bottom:40px;
 }
 .hero-desc strong{color:var(--text);font-weight:400;}
 .hero-btns{display:flex;gap:12px;flex-wrap:wrap;}
+
+/* photo */
+.hero-photo-wrap{
+  position:relative;
+  width:100%;
+  aspect-ratio:3/4;
+  border:1px solid var(--line2);
+  border-radius:4px;
+  overflow:hidden;
+  background:var(--bg3);
+}
+.hero-photo-wrap img{
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:center top;
+  display:block;
+}
+.hero-photo-placeholder{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:12px;
+  color:var(--text3);
+  font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+}
 .btn{
   font-family:var(--mono);
   font-size:11px;letter-spacing:.06em;
@@ -253,6 +317,9 @@ body.hov #cur{animation:none;opacity:1;}
   grid-template-columns:1fr 340px;
   gap:80px;
   align-items:start;
+}
+.about-body-only{
+  max-width:640px;
 }
 .about-body p{
   font-size:14px;
@@ -289,89 +356,140 @@ body.hov #cur{animation:none;opacity:1;}
 .aside-val.acc{color:var(--accent);}
 
 /* ── PROJECTS ── */
-.proj-list{display:flex;flex-direction:column;gap:0;}
-.proj-item{
-  display:grid;
-  grid-template-columns:220px 1fr 180px 80px;
-  gap:0 32px;
-  padding:22px 0;
-  border-bottom:1px solid var(--line);
-  align-items:start;
-  transition:background .2s;
-}
-.proj-item:first-child{
-  border-top:1px solid var(--line2);
-  padding-top:0;
-  margin-top:0;
-}
-.proj-item:first-child .proj-name-col{padding-top:0;}
-.proj-item:hover{background:rgba(255,255,255,.02);}
-.proj-item:last-child{border-bottom:none;}
+.proj-cards{display:flex;flex-direction:column;gap:40px;}
 
-.proj-name-col{}
-.proj-name{
-  font-size:14px;font-weight:500;
-  color:var(--text);
-  letter-spacing:-.01em;
-  margin-bottom:5px;
+.proj-card{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0;
+  border:1px solid var(--line);
+  border-radius:4px;
+  overflow:hidden;
+  transition:border-color .25s;
 }
-.proj-meta{
+.proj-card:hover{border-color:var(--line2);}
+
+/* Alternate image left/right */
+.proj-card:nth-child(even){direction:rtl;}
+.proj-card:nth-child(even) > *{direction:ltr;}
+
+.proj-img-wrap{
+  position:relative;
+  overflow:hidden;
+  background:var(--bg3);
+  aspect-ratio:16/10;
+  cursor:pointer;
+}
+.proj-img-wrap img{
+  width:100%;height:100%;
+  object-fit:cover;
+  transition:transform .4s var(--ease);
+  display:block;
+}
+.proj-img-wrap:hover img{transform:scale(1.04);}
+
+/* placeholder when no image */
+.proj-img-placeholder{
+  width:100%;height:100%;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:12px;
+  background:var(--bg3);
+  transition:background .25s;
+}
+.proj-card:hover .proj-img-placeholder{background:var(--bg2);}
+.proj-img-placeholder-icon{
+  width:40px;height:40px;
+  border:1px solid var(--line2);
+  border-radius:2px;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--text3);
+}
+.proj-img-placeholder-label{
+  font-size:10px;color:var(--text3);
+  letter-spacing:.1em;text-transform:uppercase;
+}
+
+/* overlay on hover */
+.proj-img-overlay{
+  position:absolute;inset:0;
+  background:rgba(0,0,0,.45);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;
+  transition:opacity .3s;
+}
+.proj-img-wrap:hover .proj-img-overlay{opacity:1;}
+.proj-img-overlay-text{
+  font-size:11px;color:#fff;
+  letter-spacing:.1em;text-transform:uppercase;
+  border:1px solid rgba(255,255,255,.5);
+  padding:6px 16px;border-radius:2px;
+}
+
+.proj-info{
+  padding:32px 36px;
+  display:flex;flex-direction:column;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.proj-info-top{}
+.proj-category{
+  font-size:9px;color:var(--text3);
+  letter-spacing:.14em;text-transform:uppercase;
+  margin-bottom:8px;
+}
+.proj-name{
+  font-size:20px;font-weight:500;
+  color:var(--text);letter-spacing:-.03em;
+  line-height:1.1;margin-bottom:6px;
+}
+.proj-period{
   font-size:11px;color:var(--text3);
-  letter-spacing:.02em;
-  line-height:1.5;
+  letter-spacing:.02em;margin-bottom:14px;
 }
 .proj-badge{
   display:inline-block;
   font-size:9px;color:var(--accent);
   border:1px solid rgba(232,68,42,.3);
-  padding:1px 6px;border-radius:2px;
-  letter-spacing:.05em;
-  margin-top:5px;
+  padding:1px 7px;border-radius:2px;
+  letter-spacing:.05em;margin-bottom:14px;
 }
-
-.proj-desc-col{
+.proj-desc{
   font-size:13px;color:var(--text2);
-  line-height:1.65;font-weight:300;
+  line-height:1.75;font-weight:300;
 }
 
-.proj-stack-col{
-  display:flex;flex-wrap:wrap;
-  gap:5px;align-content:start;
+.proj-info-bottom{}
+.proj-stack{
+  display:flex;flex-wrap:wrap;gap:6px;
+  margin-bottom:20px;
 }
 .proj-tag{
-  font-size:10px;color:var(--text2);
+  font-size:11px;color:var(--text2);
   background:var(--bg3);
   border:1px solid var(--line2);
-  padding:2px 8px;border-radius:2px;
+  padding:3px 10px;border-radius:2px;
   letter-spacing:.02em;
+  transition:border-color .2s,color .2s;
 }
+.proj-tag:hover{border-color:var(--accent);color:var(--text);}
 
-.proj-link-col{
-  text-align:right;
+.proj-links{
+  display:flex;gap:16px;align-items:center;
+  border-top:1px solid var(--line);
+  padding-top:16px;
 }
-.proj-link-col a,
-.proj-link-col span{
+.proj-link{
   font-size:11px;color:var(--text3);
-  text-decoration:none;letter-spacing:.03em;
-  display:block;margin-bottom:3px;
+  text-decoration:none;letter-spacing:.05em;
+  text-transform:uppercase;
   transition:color .2s;
+  display:flex;align-items:center;gap:5px;
 }
-.proj-link-col a:hover{color:var(--accent);}
-
-/* table-header row */
-.proj-header-row{
-  display:grid;
-  grid-template-columns:220px 1fr 180px 80px;
-  gap:0 32px;
-  padding-bottom:12px;
-  border-bottom:1px solid var(--line2);
-  margin-bottom:0;
-}
-.proj-header-row span{
-  font-size:10px;color:var(--text3);
-  letter-spacing:.1em;text-transform:uppercase;
-}
-.proj-header-row span:last-child{text-align:right;}
+.proj-link:hover{color:var(--accent);}
+.proj-link-primary{color:var(--text2);}
+.proj-link-primary:hover{color:var(--accent);}
 
 /* ── EXPERIENCE ── */
 .exp-list{display:flex;flex-direction:column;gap:0;}
@@ -425,20 +543,35 @@ body.hov #cur{animation:none;opacity:1;}
 .skill-cat-name{
   font-size:10px;color:var(--text3);
   letter-spacing:.12em;text-transform:uppercase;
-  margin-bottom:12px;
+  margin-bottom:14px;
   padding-bottom:8px;
   border-bottom:1px solid var(--line);
 }
-.skill-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.skill-tags{display:flex;flex-wrap:wrap;gap:8px;}
 .skill-tag{
-  font-size:12px;color:var(--text);
+  display:flex;align-items:center;gap:7px;
+  font-size:12px;color:var(--text2);
   background:var(--bg3);
   border:1px solid var(--line2);
-  padding:4px 12px;border-radius:2px;
+  padding:6px 12px;border-radius:2px;
   letter-spacing:.01em;
-  transition:border-color .2s,color .2s;
+  transition:border-color .25s,color .25s,background .25s;
 }
-.skill-tag:hover{border-color:var(--accent);color:var(--text);}
+.skill-tag:hover{
+  border-color:var(--accent);
+  color:var(--text);
+  background:var(--bg2);
+}
+.skill-tag i{
+  font-size:16px;
+  line-height:1;
+  flex-shrink:0;
+}
+/* skills with no devicon use a tiny dot */
+.skill-tag .sk-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--text3);flex-shrink:0;
+}
 
 /* ── CONTACT ── */
 .contact-layout{
@@ -508,10 +641,11 @@ a.c-val::after{content:' ↗';font-size:9px;opacity:.6;}
   .sn-ext-links{flex-direction:row;gap:12px;margin-bottom:0;}
   .content{margin-left:0;}
   .sec{padding:60px 24px;min-height:auto;}
+  .hero-layout{grid-template-columns:1fr;}
+  .hero-photo-wrap{width:180px;aspect-ratio:1/1;border-radius:50%;margin:0 auto;}
   .about-grid,.contact-layout{grid-template-columns:1fr;}
-  .proj-header-row,.proj-item{grid-template-columns:1fr;gap:6px;}
-  .proj-header-row{display:none;}
-  .proj-item{padding:16px 0;}
+  .proj-card{grid-template-columns:1fr;}
+  .proj-img-wrap{aspect-ratio:16/9;}
   .exp-item{grid-template-columns:1fr;gap:4px;}
   .skills-layout{grid-template-columns:1fr 1fr;}
 }
@@ -537,6 +671,7 @@ a.c-val::after{content:' ↗';font-size:9px;opacity:.6;}
       <li><a href="#contact"    class="sn-link">Contact</a></li>
     </ul>
   </div>
+
   <div class="sn-bottom">
     <div class="sn-ext-links">
       <a href="https://github.com/Sxhail" class="sn-icon-link" target="_blank" aria-label="GitHub">
@@ -560,18 +695,33 @@ a.c-val::after{content:' ↗';font-size:9px;opacity:.6;}
 
   <!-- ── 00 HERO ── -->
   <section class="sec" id="hero">
-    <div class="reveal">
-      <div class="hero-eyebrow">BAI Computer Engineering · Trinity College Dublin</div>
-      <h1 class="hero-name">Suhail<br/><em>Jameel</em></h1>
-      <p class="hero-desc">
-        I build things at the intersection of <strong>software and hardware</strong> —
-        production mobile apps, custom networking protocols, embedded firmware,
-        and AI pipelines. Third-year engineer. Ships first, asks questions later.
-      </p>
-      <div class="hero-btns">
-        <a href="#projects" class="btn btn-solid">View Projects</a>
-        <a href="#"         class="btn btn-ghost">Download CV</a>
-        <a href="#contact"  class="btn btn-ghost">Get in Touch</a>
+    <div class="hero-layout reveal">
+      <div class="hero-text">
+        <div class="hero-eyebrow">BAI Computer Engineering · Trinity College Dublin</div>
+        <h1 class="hero-name">Suhail<br/><em>Jameel</em></h1>
+        <p class="hero-desc">
+          I build things at the intersection of <strong>software and hardware</strong> —
+          production mobile apps, custom networking protocols, embedded firmware,
+          and AI pipelines. Third-year engineer. Ships first, asks questions later.
+        </p>
+        <div class="hero-btns">
+          <a href="#projects" class="btn btn-solid">View Projects</a>
+          <a href="#"         class="btn btn-ghost">Download CV</a>
+          <a href="#contact"  class="btn btn-ghost">Get in Touch</a>
+        </div>
+      </div>
+      <div class="hero-photo-wrap">
+        <!-- Replace the img src with your photo path e.g. src="photo.jpg" -->
+        <img
+          id="hero-photo"
+          src=""
+          alt="Suhail Jameel"
+          onerror="this.style.display='none';document.getElementById('hero-photo-placeholder').style.display='flex';"
+        />
+        <div id="hero-photo-placeholder" class="hero-photo-placeholder">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--text3)"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span>Add photo here</span>
+        </div>
       </div>
     </div>
   </section>
@@ -582,7 +732,7 @@ a.c-val::after{content:' ↗';font-size:9px;opacity:.6;}
       <div class="sec-num">01</div>
       <h2 class="sec-title">About<span>.</span></h2>
     </div>
-    <div class="about-grid reveal">
+    <div class="about-body-only reveal">
       <div class="about-body">
         <p>
           <span class="hl">Third-year Computer Engineering student</span> at Trinity College Dublin,
@@ -601,37 +751,6 @@ a.c-val::after{content:' ↗';font-size:9px;opacity:.6;}
           When I'm not at a keyboard I'm in the <span class="grn">gym</span>.
         </p>
       </div>
-      <div class="about-aside">
-        <div class="aside-block">
-          <div class="aside-label">education</div>
-          <div class="aside-row">
-            <span class="aside-key">institution</span>
-            <span class="aside-val">TCD</span>
-          </div>
-          <div class="aside-row">
-            <span class="aside-key">degree</span>
-            <span class="aside-val">BAI Eng.</span>
-          </div>
-          <div class="aside-row">
-            <span class="aside-key">year</span>
-            <span class="aside-val acc">3 / 4</span>
-          </div>
-          <div class="aside-row">
-            <span class="aside-key">graduation</span>
-            <span class="aside-val">May 2027</span>
-          </div>
-        </div>
-        <div class="aside-block">
-          <div class="aside-label">interests</div>
-          <div class="aside-row">
-            <span class="aside-key">domains</span>
-            <span class="aside-val">Software · Hardware · AI</span>
-          </div>
-          <div class="aside-row">
-            <span class="aside-key">outside work</span>
-            <span class="aside-val">gym</span>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -642,114 +761,208 @@ a.c-val::after{content:' ↗';font-size:9px;opacity:.6;}
       <div class="sec-num">02</div>
       <h2 class="sec-title">Projects<span>.</span></h2>
     </div>
-    <div class="reveal">
-      <div class="proj-header-row">
-        <span>name</span>
-        <span>description</span>
-        <span>stack</span>
-        <span style="text-align:right">link</span>
-      </div>
-      <div class="proj-list">
+    <div class="proj-cards reveal">
 
-        <div class="proj-item">
-          <div class="proj-name-col">
+      <!-- Protocol -->
+      <div class="proj-card">
+        <div class="proj-img-wrap" onclick="window.open('#','_blank')">
+          <div class="proj-img-placeholder">
+            <div class="proj-img-placeholder-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="9" y1="7" x2="15" y2="7"/><line x1="9" y1="11" x2="15" y2="11"/><line x1="9" y1="15" x2="12" y2="15"/></svg>
+            </div>
+            <span class="proj-img-placeholder-label">Add screenshot</span>
+          </div>
+          <div class="proj-img-overlay"><span class="proj-img-overlay-text">View Demo</span></div>
+        </div>
+        <div class="proj-info">
+          <div class="proj-info-top">
+            <div class="proj-category">Mobile · React Native</div>
             <div class="proj-name">Protocol</div>
-            <div class="proj-meta">React Native · Mobile<br/>Jul 2025 – present</div>
+            <div class="proj-period">Jul 2025 – present</div>
+            <p class="proj-desc">Cross-platform fitness tracking app with 50+ daily active users. Owned the full product lifecycle from idea to production independently, iterating on real user feedback across multiple releases.</p>
           </div>
-          <div class="proj-desc-col">Cross-platform fitness tracking app with 50+ daily active users. Owned the full product lifecycle from idea to production independently, iterating on real user feedback across multiple releases.</div>
-          <div class="proj-stack-col">
-            <span class="proj-tag">React Native</span>
-            <span class="proj-tag">TypeScript</span>
-            <span class="proj-tag">Node.js</span>
-            <span class="proj-tag">SQLite</span>
-          </div>
-          <div class="proj-link-col">
-            <span>demo ↓</span>
-          </div>
-        </div>
-
-        <div class="proj-item">
-          <div class="proj-name-col">
-            <div class="proj-name">DubAI</div>
-            <div class="proj-meta">Python · AI<br/>May – Jun 2025</div>
-          </div>
-          <div class="proj-desc-col">Multilingual voice AI pipeline combining speech recognition, LLM inference, and TTS synthesis. Handles audio encoding, language routing, and response streaming for real-time localised interactions at scale.</div>
-          <div class="proj-stack-col">
-            <span class="proj-tag">Python</span>
-            <span class="proj-tag">OpenAI API</span>
-            <span class="proj-tag">AWS Polly</span>
-          </div>
-          <div class="proj-link-col">
-            <span>demo ↓</span>
+          <div class="proj-info-bottom">
+            <div class="proj-stack">
+              <span class="proj-tag">React Native</span>
+              <span class="proj-tag">TypeScript</span>
+              <span class="proj-tag">Node.js</span>
+              <span class="proj-tag">SQLite</span>
+            </div>
+            <div class="proj-links">
+              <span class="proj-link" style="color:var(--text3);cursor:default;">Demo coming soon</span>
+            </div>
           </div>
         </div>
-
-        <div class="proj-item">
-          <div class="proj-name-col">
-            <div class="proj-name">Wind Turbine → Space Station</div>
-            <div class="proj-meta">Networking · Systems<br/>Jan – May 2026</div>
-            <div class="proj-badge">custom UDP protocol</div>
-          </div>
-          <div class="proj-desc-col">Custom binary networking protocol over raw UDP — stop-and-wait ARQ, checksum verification, three-node distributed system simulating a LEO satellite relay with configurable packet loss and blackout windows.</div>
-          <div class="proj-stack-col">
-            <span class="proj-tag">Python</span>
-            <span class="proj-tag">UDP Sockets</span>
-            <span class="proj-tag">Distributed</span>
-          </div>
-          <div class="proj-link-col">
-            <a href="#" target="_blank">GitHub</a>
-          </div>
-        </div>
-
-        <div class="proj-item">
-          <div class="proj-name-col">
-            <div class="proj-name">Morse Code Game</div>
-            <div class="proj-meta">Embedded · Hardware<br/>Feb – Apr 2026</div>
-          </div>
-          <div class="proj-desc-col">Interactive game on Maker Pi Pico. GPIO interrupt handler in ARM assembly, 4 difficulty levels, dot/dash timing classification, character decoding, RGB LED feedback, and Watchdog Timer reset.</div>
-          <div class="proj-stack-col">
-            <span class="proj-tag">C</span>
-            <span class="proj-tag">ARM Assembly</span>
-            <span class="proj-tag">Pi Pico</span>
-          </div>
-          <div class="proj-link-col">
-            <a href="#" target="_blank">GitHub</a>
-          </div>
-        </div>
-
-        <div class="proj-item">
-          <div class="proj-name-col">
-            <div class="proj-name">FPGA Digital Systems</div>
-            <div class="proj-meta">Digital Design · FPGA<br/>Jan – May 2026</div>
-          </div>
-          <div class="proj-desc-col">Mini ALU in Verilog — 8 arithmetic/logical ops on 6-bit 2's complement, carry ripple adder. Moore FSM sequence detector with LFSR and counter, results on 7-segment display. Basys3 board.</div>
-          <div class="proj-stack-col">
-            <span class="proj-tag">Verilog</span>
-            <span class="proj-tag">Xilinx Vivado</span>
-            <span class="proj-tag">Basys3</span>
-          </div>
-          <div class="proj-link-col">
-            <a href="#" target="_blank">GitHub</a>
-          </div>
-        </div>
-
-        <div class="proj-item">
-          <div class="proj-name-col">
-            <div class="proj-name">LeetTracker</div>
-            <div class="proj-meta">Python · Automation</div>
-          </div>
-          <div class="proj-desc-col">Tracks LeetCode progress via GraphQL and REST APIs. Cron-scheduled, outputs structured progress tables to terminal.</div>
-          <div class="proj-stack-col">
-            <span class="proj-tag">Python</span>
-            <span class="proj-tag">GraphQL</span>
-            <span class="proj-tag">REST</span>
-          </div>
-          <div class="proj-link-col">
-            <a href="#" target="_blank">GitHub</a>
-          </div>
-        </div>
-
       </div>
+
+      <!-- DubAI -->
+      <div class="proj-card">
+        <div class="proj-img-wrap" onclick="window.open('#','_blank')">
+          <div class="proj-img-placeholder">
+            <div class="proj-img-placeholder-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a3 3 0 0 1 3 3v7a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+            </div>
+            <span class="proj-img-placeholder-label">Add screenshot</span>
+          </div>
+          <div class="proj-img-overlay"><span class="proj-img-overlay-text">View Demo</span></div>
+        </div>
+        <div class="proj-info">
+          <div class="proj-info-top">
+            <div class="proj-category">AI · Python</div>
+            <div class="proj-name">DubAI</div>
+            <div class="proj-period">May – Jun 2025</div>
+            <p class="proj-desc">Multilingual voice AI pipeline combining speech recognition, LLM inference, and TTS synthesis. Handles audio encoding, language routing, and response streaming for real-time localised interactions at scale.</p>
+          </div>
+          <div class="proj-info-bottom">
+            <div class="proj-stack">
+              <span class="proj-tag">Python</span>
+              <span class="proj-tag">OpenAI API</span>
+              <span class="proj-tag">AWS Polly</span>
+            </div>
+            <div class="proj-links">
+              <span class="proj-link" style="color:var(--text3);cursor:default;">Demo coming soon</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Wind Turbine -->
+      <div class="proj-card">
+        <div class="proj-img-wrap" onclick="window.open('#','_blank')">
+          <div class="proj-img-placeholder">
+            <div class="proj-img-placeholder-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12H2"/><path d="M5 12V7a7 7 0 0 1 14 0v5"/><path d="M12 12v9"/><circle cx="12" cy="21" r="1"/></svg>
+            </div>
+            <span class="proj-img-placeholder-label">Add screenshot</span>
+          </div>
+          <div class="proj-img-overlay"><span class="proj-img-overlay-text">View on GitHub</span></div>
+        </div>
+        <div class="proj-info">
+          <div class="proj-info-top">
+            <div class="proj-category">Networking · Distributed Systems</div>
+            <div class="proj-name">Wind Turbine → Space Station</div>
+            <div class="proj-period">Jan – May 2026</div>
+            <div class="proj-badge">custom UDP protocol</div>
+            <p class="proj-desc">Custom binary networking protocol over raw UDP — stop-and-wait ARQ, checksum verification, three-node distributed system simulating a LEO satellite relay with configurable packet loss and blackout windows.</p>
+          </div>
+          <div class="proj-info-bottom">
+            <div class="proj-stack">
+              <span class="proj-tag">Python</span>
+              <span class="proj-tag">UDP Sockets</span>
+              <span class="proj-tag">Distributed</span>
+            </div>
+            <div class="proj-links">
+              <a href="#" class="proj-link proj-link-primary" target="_blank">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+                GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Morse Code Game -->
+      <div class="proj-card">
+        <div class="proj-img-wrap" onclick="window.open('#','_blank')">
+          <div class="proj-img-placeholder">
+            <div class="proj-img-placeholder-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3H8M12 3v4"/><circle cx="8" cy="14" r="1" fill="currentColor"/><circle cx="12" cy="14" r="1" fill="currentColor"/><circle cx="16" cy="14" r="1" fill="currentColor"/></svg>
+            </div>
+            <span class="proj-img-placeholder-label">Add screenshot</span>
+          </div>
+          <div class="proj-img-overlay"><span class="proj-img-overlay-text">View on GitHub</span></div>
+        </div>
+        <div class="proj-info">
+          <div class="proj-info-top">
+            <div class="proj-category">Embedded · Hardware</div>
+            <div class="proj-name">Morse Code Game</div>
+            <div class="proj-period">Feb – Apr 2026</div>
+            <p class="proj-desc">Interactive game on Maker Pi Pico. GPIO interrupt handler in ARM assembly, 4 difficulty levels, dot/dash timing classification, character decoding, RGB LED feedback, and Watchdog Timer reset.</p>
+          </div>
+          <div class="proj-info-bottom">
+            <div class="proj-stack">
+              <span class="proj-tag">C</span>
+              <span class="proj-tag">ARM Assembly</span>
+              <span class="proj-tag">Pi Pico</span>
+            </div>
+            <div class="proj-links">
+              <a href="#" class="proj-link proj-link-primary" target="_blank">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+                GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FPGA -->
+      <div class="proj-card">
+        <div class="proj-img-wrap" onclick="window.open('#','_blank')">
+          <div class="proj-img-placeholder">
+            <div class="proj-img-placeholder-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M7 7h2v2H7zM11 7h2v2h-2zM15 7h2v2h-2zM7 11h2v2H7zM11 11h2v2h-2zM15 11h2v2h-2zM7 15h2v2H7zM11 15h6v2h-6z"/></svg>
+            </div>
+            <span class="proj-img-placeholder-label">Add screenshot</span>
+          </div>
+          <div class="proj-img-overlay"><span class="proj-img-overlay-text">View on GitHub</span></div>
+        </div>
+        <div class="proj-info">
+          <div class="proj-info-top">
+            <div class="proj-category">Digital Design · FPGA</div>
+            <div class="proj-name">FPGA Digital Systems</div>
+            <div class="proj-period">Jan – May 2026</div>
+            <p class="proj-desc">Mini ALU in Verilog — 8 arithmetic/logical ops on 6-bit 2's complement, carry ripple adder. Moore FSM sequence detector with LFSR and counter, results on 7-segment display. Basys3 board.</p>
+          </div>
+          <div class="proj-info-bottom">
+            <div class="proj-stack">
+              <span class="proj-tag">Verilog</span>
+              <span class="proj-tag">Xilinx Vivado</span>
+              <span class="proj-tag">Basys3</span>
+            </div>
+            <div class="proj-links">
+              <a href="#" class="proj-link proj-link-primary" target="_blank">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+                GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LeetTracker -->
+      <div class="proj-card">
+        <div class="proj-img-wrap" onclick="window.open('#','_blank')">
+          <div class="proj-img-placeholder">
+            <div class="proj-img-placeholder-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <span class="proj-img-placeholder-label">Add screenshot</span>
+          </div>
+          <div class="proj-img-overlay"><span class="proj-img-overlay-text">View on GitHub</span></div>
+        </div>
+        <div class="proj-info">
+          <div class="proj-info-top">
+            <div class="proj-category">Python · Automation</div>
+            <div class="proj-name">LeetTracker</div>
+            <div class="proj-period">2024</div>
+            <p class="proj-desc">Tracks LeetCode progress via GraphQL and REST APIs. Cron-scheduled, outputs structured progress tables to terminal.</p>
+          </div>
+          <div class="proj-info-bottom">
+            <div class="proj-stack">
+              <span class="proj-tag">Python</span>
+              <span class="proj-tag">GraphQL</span>
+              <span class="proj-tag">REST</span>
+            </div>
+            <div class="proj-links">
+              <a href="#" class="proj-link proj-link-primary" target="_blank">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+                GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -807,61 +1020,68 @@ a.c-val::after{content:' ↗';font-size:9px;opacity:.6;}
       <h2 class="sec-title">Skills<span>.</span></h2>
     </div>
     <div class="skills-layout reveal">
+
       <div class="skill-cat">
-        <div class="skill-cat-name">languages</div>
+        <div class="skill-cat-name">Languages</div>
         <div class="skill-tags">
-          <span class="skill-tag">Python</span>
-          <span class="skill-tag">TypeScript</span>
-          <span class="skill-tag">C</span>
-          <span class="skill-tag">SQL</span>
-          <span class="skill-tag">Bash</span>
-          <span class="skill-tag">Verilog</span>
-          <span class="skill-tag">ARM Assembly</span>
+          <span class="skill-tag"><i class="devicon-python-plain"></i>Python</span>
+          <span class="skill-tag"><i class="devicon-typescript-plain"></i>TypeScript</span>
+          <span class="skill-tag"><i class="devicon-c-plain"></i>C</span>
+          <span class="skill-tag"><i class="devicon-azuresqldatabase-plain"></i>SQL</span>
+          <span class="skill-tag"><i class="devicon-bash-plain"></i>Bash</span>
+          <span class="skill-tag"><span class="sk-dot"></span>Verilog</span>
+          <span class="skill-tag"><span class="sk-dot"></span>ARM Assembly</span>
         </div>
       </div>
+
       <div class="skill-cat">
-        <div class="skill-cat-name">backend</div>
+        <div class="skill-cat-name">Backend</div>
         <div class="skill-tags">
-          <span class="skill-tag">FastAPI</span>
-          <span class="skill-tag">Node.js</span>
-          <span class="skill-tag">REST APIs</span>
-          <span class="skill-tag">SQLite</span>
+          <span class="skill-tag"><i class="devicon-fastapi-plain"></i>FastAPI</span>
+          <span class="skill-tag"><i class="devicon-nodejs-plain"></i>Node.js</span>
+          <span class="skill-tag"><span class="sk-dot"></span>REST APIs</span>
+          <span class="skill-tag"><i class="devicon-sqlite-plain"></i>SQLite</span>
         </div>
       </div>
+
       <div class="skill-cat">
-        <div class="skill-cat-name">ai / ml</div>
+        <div class="skill-cat-name">AI / ML</div>
         <div class="skill-tags">
-          <span class="skill-tag">OpenAI API</span>
-          <span class="skill-tag">AWS Polly</span>
-          <span class="skill-tag">scikit-learn</span>
-          <span class="skill-tag">Prompt Engineering</span>
+          <span class="skill-tag"><span class="sk-dot"></span>OpenAI API</span>
+          <span class="skill-tag"><i class="devicon-amazonwebservices-plain"></i>AWS Polly</span>
+          <span class="skill-tag"><i class="devicon-scikitlearn-plain"></i>scikit-learn</span>
+          <span class="skill-tag"><span class="sk-dot"></span>Prompt Engineering</span>
         </div>
       </div>
+
       <div class="skill-cat">
-        <div class="skill-cat-name">hardware</div>
+        <div class="skill-cat-name">Hardware</div>
         <div class="skill-tags">
-          <span class="skill-tag">FPGA / Vivado</span>
-          <span class="skill-tag">ARM embedded</span>
-          <span class="skill-tag">Digital logic</span>
+          <span class="skill-tag"><span class="sk-dot"></span>FPGA / Vivado</span>
+          <span class="skill-tag"><span class="sk-dot"></span>ARM Embedded</span>
+          <span class="skill-tag"><span class="sk-dot"></span>Digital Logic</span>
         </div>
       </div>
+
       <div class="skill-cat">
-        <div class="skill-cat-name">infra / tools</div>
+        <div class="skill-cat-name">Infra / Tools</div>
         <div class="skill-tags">
-          <span class="skill-tag">Git</span>
-          <span class="skill-tag">Linux</span>
-          <span class="skill-tag">Docker</span>
-          <span class="skill-tag">AWS</span>
+          <span class="skill-tag"><i class="devicon-git-plain"></i>Git</span>
+          <span class="skill-tag"><i class="devicon-linux-plain"></i>Linux</span>
+          <span class="skill-tag"><i class="devicon-docker-plain"></i>Docker</span>
+          <span class="skill-tag"><i class="devicon-amazonwebservices-plain"></i>AWS</span>
         </div>
       </div>
+
       <div class="skill-cat">
-        <div class="skill-cat-name">frontend</div>
+        <div class="skill-cat-name">Frontend</div>
         <div class="skill-tags">
-          <span class="skill-tag">React Native</span>
-          <span class="skill-tag">React</span>
-          <span class="skill-tag">Expo</span>
+          <span class="skill-tag"><i class="devicon-react-original"></i>React Native</span>
+          <span class="skill-tag"><i class="devicon-react-original"></i>React</span>
+          <span class="skill-tag"><i class="devicon-expo-original"></i>Expo</span>
         </div>
       </div>
+
     </div>
   </section>
 
