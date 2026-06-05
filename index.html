@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Suhail Jameel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<style>
+/* ── TOKENS ── */
+:root {
+  --bg:      #080808;
+  --bg2:     #0f0f0f;
+  --bg3:     #161616;
+  --line:    rgba(255,255,255,0.07);
+  --line2:   rgba(255,255,255,0.12);
+  --text:    #e0e0dc;
+  --text2:   #a8a8a4;
+  --text3:   #6a6a66;
+  --accent:  #e8442a;
+  --accentd: rgba(232,68,42,0.14);
+  --green:   #3ddc84;
+  --mono:    'DM Mono','Cascadia Code','Fira Mono',monospace;
+  --ease:    cubic-bezier(.25,.46,.45,.94);
+  --trans:   background .3s,color .3s,border-color .3s;
+}
+[data-theme="light"] {
+  --bg:      #f5f5f3;
+  --bg2:     #ececea;
+  --bg3:     #e3e3e1;
+  --line:    rgba(0,0,0,0.07);
+  --line2:   rgba(0,0,0,0.13);
+  --text:    #141412;
+  --text2:   #444442;
+  --text3:   #767672;
+  --accentd: rgba(232,68,42,0.1);
+  --green:   #1a8f4e;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:var(--mono);
+  font-size:13px;
+  line-height:1.6;
+  background:var(--bg);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  cursor:none;
+  transition:var(--trans);
+}
+
+/* ── CURSOR ── */
+#cur{
+  position:fixed;z-index:9999;pointer-events:none;
+  width:2px;height:18px;
+  background:var(--accent);
+  transform:translate(-1px,-50%);
+  animation:blink 1.1s step-end infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+body.hov #cur{animation:none;opacity:1;}
+
+/* ── FIXED LEFT NAV ── */
+.sidenav{
+  position:fixed;
+  left:0;top:0;bottom:0;
+  width:200px;
+  background:var(--bg2);
+  border-right:1px solid var(--line);
+  display:flex;flex-direction:column;
+  justify-content:space-between;
+  padding:36px 0 28px;
+  z-index:100;
+  transition:var(--trans);
+}
+
+.sn-top{padding:0 28px;}
+.sn-name{
+  font-size:15px;font-weight:500;
+  color:var(--text);
+  letter-spacing:-.02em;
+  line-height:1.15;
+  margin-bottom:4px;
+}
+.sn-name span{color:var(--accent);}
+.sn-role{
+  font-size:11px;color:var(--text3);
+  letter-spacing:.03em;
+  margin-bottom:32px;
+}
+.sn-loc{
+  font-size:11px;color:var(--text3);
+  letter-spacing:.02em;
+  margin-bottom:32px;
+}
+
+/* nav links */
+.sn-links{
+  list-style:none;
+  padding:0 0 0 28px;
+}
+.sn-links li{margin-bottom:2px;}
+.sn-links a{
+  display:flex;align-items:center;gap:10px;
+  font-size:12px;color:var(--text3);
+  text-decoration:none;
+  padding:6px 0;
+  letter-spacing:.04em;
+  transition:color .2s;
+  position:relative;
+}
+.sn-links a::before{
+  content:'';
+  width:16px;height:1px;
+  background:var(--text3);
+  flex-shrink:0;
+  transition:width .2s,background .2s;
+}
+.sn-links a:hover{color:var(--text2);}
+.sn-links a:hover::before{background:var(--text2);}
+.sn-links a.active{color:var(--accent);}
+.sn-links a.active::before{width:24px;background:var(--accent);}
+
+/* bottom links */
+.sn-bottom{padding:0 28px;}
+.sn-ext-links{display:flex;flex-direction:column;gap:4px;margin-bottom:20px;}
+.sn-ext-link{
+  font-size:11px;color:var(--text3);
+  text-decoration:none;
+  letter-spacing:.03em;
+  transition:color .2s;
+  display:flex;align-items:center;gap:6px;
+}
+.sn-ext-link::after{content:'↗';font-size:9px;opacity:.5;}
+.sn-ext-link:hover{color:var(--text);}
+
+/* theme btn */
+#theme-btn{
+  background:none;border:1px solid var(--line2);
+  color:var(--text3);font-family:var(--mono);
+  font-size:10px;letter-spacing:.05em;
+  padding:5px 10px;border-radius:2px;
+  cursor:none;transition:color .2s,border-color .2s;
+  width:100%;text-align:left;
+  display:flex;align-items:center;gap:6px;
+}
+#theme-btn:hover{color:var(--text2);border-color:var(--line2);}
+
+/* ── MAIN CONTENT ── */
+.content{
+  margin-left:200px;
+}
+
+/* ── SECTION base ── */
+.sec{
+  min-height:100vh;
+  border-bottom:1px solid var(--line);
+  display:flex;flex-direction:column;
+  justify-content:center;
+  padding:80px 72px;
+  position:relative;
+  transition:var(--trans);
+}
+.sec:last-of-type{border-bottom:none;}
+
+/* section heading block */
+.sec-head{
+  margin-bottom:52px;
+}
+.sec-num{
+  font-size:10px;color:var(--text3);
+  letter-spacing:.16em;
+  margin-bottom:10px;
+}
+.sec-title{
+  font-size:clamp(22px,3vw,32px);
+  font-weight:500;
+  color:var(--text);
+  letter-spacing:-.03em;
+  line-height:1;
+}
+.sec-title span{color:var(--accent);}
+
+/* ── HERO SECTION ── */
+#hero{
+  min-height:100vh;
+  justify-content:center;
+  padding:80px 72px;
+}
+.hero-eyebrow{
+  font-size:11px;color:var(--text3);
+  letter-spacing:.12em;
+  margin-bottom:20px;
+}
+.hero-name{
+  font-size:clamp(36px,5vw,60px);
+  font-weight:500;
+  letter-spacing:-.04em;
+  line-height:.95;
+  color:var(--text);
+  margin-bottom:20px;
+}
+.hero-name em{
+  font-style:normal;
+  color:var(--accent);
+}
+.hero-desc{
+  font-size:15px;
+  color:var(--text2);
+  max-width:560px;
+  line-height:1.8;
+  font-weight:300;
+  margin-bottom:40px;
+}
+.hero-desc strong{color:var(--text);font-weight:400;}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;}
+.btn{
+  font-family:var(--mono);
+  font-size:11px;letter-spacing:.06em;
+  padding:9px 22px;
+  text-decoration:none;
+  border-radius:2px;
+  transition:all .2s;
+  display:inline-flex;align-items:center;gap:6px;
+  cursor:none;
+}
+.btn-solid{
+  background:var(--accent);color:#fff;
+  border:1px solid var(--accent);
+}
+.btn-solid:hover{background:#ff5a40;border-color:#ff5a40;}
+.btn-ghost{
+  background:transparent;color:var(--text2);
+  border:1px solid var(--line2);
+}
+.btn-ghost:hover{color:var(--text);border-color:var(--text3);}
+
+/* ── ABOUT ── */
+.about-grid{
+  display:grid;
+  grid-template-columns:1fr 340px;
+  gap:80px;
+  align-items:start;
+}
+.about-body p{
+  font-size:14px;
+  color:var(--text2);
+  line-height:1.85;
+  margin-bottom:14px;
+  font-weight:300;
+}
+.about-body p .hl{color:var(--text);}
+.about-body p .acc{color:var(--accent);}
+.about-body p .grn{color:var(--green);}
+
+.about-aside{}
+.aside-block{
+  margin-bottom:32px;
+}
+.aside-label{
+  font-size:9px;color:var(--text3);
+  letter-spacing:.14em;text-transform:uppercase;
+  margin-bottom:10px;
+  padding-bottom:8px;
+  border-bottom:1px solid var(--line);
+}
+.aside-row{
+  display:flex;justify-content:space-between;
+  align-items:baseline;
+  padding:5px 0;
+  border-bottom:1px solid var(--line);
+  font-size:12px;
+}
+.aside-row:last-child{border-bottom:none;}
+.aside-key{color:var(--text3);}
+.aside-val{color:var(--text);font-weight:500;}
+.aside-val.acc{color:var(--accent);}
+
+/* ── PROJECTS ── */
+.proj-list{display:flex;flex-direction:column;gap:0;}
+.proj-item{
+  display:grid;
+  grid-template-columns:220px 1fr 180px 80px;
+  gap:0 32px;
+  padding:22px 0;
+  border-bottom:1px solid var(--line);
+  align-items:start;
+  transition:background .2s;
+}
+.proj-item:first-child{
+  border-top:1px solid var(--line2);
+  padding-top:0;
+  margin-top:0;
+}
+.proj-item:first-child .proj-name-col{padding-top:0;}
+.proj-item:hover{background:rgba(255,255,255,.02);}
+.proj-item:last-child{border-bottom:none;}
+
+.proj-name-col{}
+.proj-name{
+  font-size:14px;font-weight:500;
+  color:var(--text);
+  letter-spacing:-.01em;
+  margin-bottom:5px;
+}
+.proj-meta{
+  font-size:11px;color:var(--text3);
+  letter-spacing:.02em;
+  line-height:1.5;
+}
+.proj-badge{
+  display:inline-block;
+  font-size:9px;color:var(--accent);
+  border:1px solid rgba(232,68,42,.3);
+  padding:1px 6px;border-radius:2px;
+  letter-spacing:.05em;
+  margin-top:5px;
+}
+
+.proj-desc-col{
+  font-size:13px;color:var(--text2);
+  line-height:1.65;font-weight:300;
+}
+
+.proj-stack-col{
+  display:flex;flex-wrap:wrap;
+  gap:5px;align-content:start;
+}
+.proj-tag{
+  font-size:10px;color:var(--text2);
+  background:var(--bg3);
+  border:1px solid var(--line2);
+  padding:2px 8px;border-radius:2px;
+  letter-spacing:.02em;
+}
+
+.proj-link-col{
+  text-align:right;
+}
+.proj-link-col a,
+.proj-link-col span{
+  font-size:11px;color:var(--text3);
+  text-decoration:none;letter-spacing:.03em;
+  display:block;margin-bottom:3px;
+  transition:color .2s;
+}
+.proj-link-col a:hover{color:var(--accent);}
+
+/* table-header row */
+.proj-header-row{
+  display:grid;
+  grid-template-columns:220px 1fr 180px 80px;
+  gap:0 32px;
+  padding-bottom:12px;
+  border-bottom:1px solid var(--line2);
+  margin-bottom:0;
+}
+.proj-header-row span{
+  font-size:10px;color:var(--text3);
+  letter-spacing:.1em;text-transform:uppercase;
+}
+.proj-header-row span:last-child{text-align:right;}
+
+/* ── EXPERIENCE ── */
+.exp-list{display:flex;flex-direction:column;gap:0;}
+.exp-item{
+  display:grid;
+  grid-template-columns:160px 1fr;
+  gap:0 48px;
+  padding:28px 0;
+  border-bottom:1px solid var(--line);
+}
+.exp-item:first-child{padding-top:0;}
+.exp-item:last-child{border-bottom:none;padding-bottom:0;}
+
+.exp-left{}
+.exp-period{
+  font-size:11px;color:var(--text2);
+  letter-spacing:.02em;line-height:1.5;
+  margin-bottom:4px;
+}
+.exp-type-tag{
+  font-size:9px;color:var(--text3);
+  letter-spacing:.1em;text-transform:uppercase;
+  margin-top:6px;
+}
+
+.exp-right{}
+.exp-role{
+  font-size:15px;font-weight:500;
+  color:var(--text);
+  letter-spacing:-.02em;
+  margin-bottom:4px;
+}
+.exp-org{
+  font-size:13px;color:var(--text2);
+  margin-bottom:12px;
+}
+.exp-body{
+  font-size:13px;color:var(--text2);
+  line-height:1.75;
+  max-width:580px;
+}
+.exp-body .hl{color:var(--text);}
+
+/* ── SKILLS ── */
+.skills-layout{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:40px 60px;
+}
+.skill-cat{}
+.skill-cat-name{
+  font-size:10px;color:var(--text3);
+  letter-spacing:.12em;text-transform:uppercase;
+  margin-bottom:12px;
+  padding-bottom:8px;
+  border-bottom:1px solid var(--line);
+}
+.skill-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.skill-tag{
+  font-size:12px;color:var(--text);
+  background:var(--bg3);
+  border:1px solid var(--line2);
+  padding:4px 12px;border-radius:2px;
+  letter-spacing:.01em;
+  transition:border-color .2s,color .2s;
+}
+.skill-tag:hover{border-color:var(--accent);color:var(--text);}
+
+/* ── CONTACT ── */
+.contact-layout{
+  display:grid;
+  grid-template-columns:1fr 340px;
+  gap:80px;
+  align-items:start;
+}
+.contact-intro{}
+.contact-heading{
+  font-size:clamp(22px,3.5vw,38px);
+  font-weight:300;
+  letter-spacing:-.04em;
+  line-height:1.2;
+  color:var(--text);
+  margin-bottom:16px;
+}
+.contact-heading em{font-style:normal;color:var(--accent);}
+.contact-sub{
+  font-size:14px;color:var(--text2);
+  line-height:1.8;max-width:380px;
+  font-weight:300;
+}
+.contact-details{}
+.contact-row{
+  display:flex;justify-content:space-between;
+  align-items:center;
+  padding:13px 0;
+  border-bottom:1px solid var(--line);
+  font-size:13px;
+}
+.contact-row:first-child{border-top:1px solid var(--line2);}
+.contact-row:last-child{border-bottom:none;}
+.c-key{color:var(--text3);}
+.c-val{color:var(--text);text-decoration:none;transition:color .2s;}
+.c-val:hover{color:var(--accent);}
+a.c-val::after{content:' ↗';font-size:9px;opacity:.6;}
+
+/* ── REVEAL ── */
+.reveal{
+  opacity:0;transform:translateY(14px);
+  transition:opacity .6s var(--ease),transform .6s var(--ease);
+}
+.reveal.vis{opacity:1;transform:none;}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--line2);border-radius:2px;}
+
+/* ── MOBILE ── */
+@media(max-width:900px){
+  .sidenav{
+    position:static;width:100%;height:auto;
+    flex-direction:row;flex-wrap:wrap;
+    padding:20px 24px;border-right:none;
+    border-bottom:1px solid var(--line);
+    justify-content:space-between;align-items:center;
+  }
+  .sn-top{padding:0;}
+  .sn-name{font-size:14px;margin-bottom:0;}
+  .sn-role,.sn-loc{display:none;}
+  .sn-links{display:flex;flex-direction:row;gap:0;padding:0;}
+  .sn-links a{padding:4px 12px;font-size:11px;}
+  .sn-links a::before{display:none;}
+  .sn-bottom{padding:0;}
+  .sn-ext-links{flex-direction:row;gap:12px;margin-bottom:0;}
+  .content{margin-left:0;}
+  .sec{padding:60px 24px;min-height:auto;}
+  .about-grid,.contact-layout{grid-template-columns:1fr;}
+  .proj-header-row,.proj-item{grid-template-columns:1fr;gap:6px;}
+  .proj-header-row{display:none;}
+  .proj-item{padding:16px 0;}
+  .exp-item{grid-template-columns:1fr;gap:4px;}
+  .skills-layout{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+<div id="cur"></div>
+
+<!-- FIXED LEFT NAV -->
+<nav class="sidenav" id="sidenav">
+  <div>
+    <div class="sn-top">
+      <div class="sn-name">Suhail<span>.</span><br/>Jameel</div>
+      <div class="sn-role">Computer Engineer</div>
+      <div class="sn-loc">◎ Dublin, Ireland</div>
+    </div>
+    <ul class="sn-links">
+      <li><a href="#hero"       class="sn-link active">Home</a></li>
+      <li><a href="#about"      class="sn-link">About</a></li>
+      <li><a href="#projects"   class="sn-link">Projects</a></li>
+      <li><a href="#experience" class="sn-link">Experience</a></li>
+      <li><a href="#skills"     class="sn-link">Skills</a></li>
+      <li><a href="#contact"    class="sn-link">Contact</a></li>
+    </ul>
+  </div>
+  <div class="sn-bottom">
+    <div class="sn-ext-links">
+      <a href="https://github.com/Sxhail"                   class="sn-ext-link" target="_blank">GitHub</a>
+      <a href="https://linkedin.com/in/suhail-jameel"       class="sn-ext-link" target="_blank">LinkedIn</a>
+      <a href="mailto:suhailjameel7@gmail.com"               class="sn-ext-link">Email</a>
+    </div>
+    <button id="theme-btn">
+      <span id="t-icon">☀</span><span id="t-lbl">Light Mode</span>
+    </button>
+  </div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<div class="content">
+
+  <!-- ── 00 HERO ── -->
+  <section class="sec" id="hero">
+    <div class="reveal">
+      <div class="hero-eyebrow">BAI Computer Engineering · Trinity College Dublin</div>
+      <h1 class="hero-name">Suhail<br/><em>Jameel</em></h1>
+      <p class="hero-desc">
+        I build things at the intersection of <strong>software and hardware</strong> —
+        production mobile apps, custom networking protocols, embedded firmware,
+        and AI pipelines. Third-year engineer. Ships first, asks questions later.
+      </p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn btn-solid">View Projects</a>
+        <a href="#"         class="btn btn-ghost">Download CV</a>
+        <a href="#contact"  class="btn btn-ghost">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 01 ABOUT ── -->
+  <section class="sec" id="about">
+    <div class="sec-head reveal">
+      <div class="sec-num">01</div>
+      <h2 class="sec-title">About<span>.</span></h2>
+    </div>
+    <div class="about-grid reveal">
+      <div class="about-body">
+        <p>
+          <span class="hl">Third-year Computer Engineering student</span> at Trinity College Dublin,
+          building at the intersection of software and hardware.
+        </p>
+        <p>
+          I've shipped a <span class="hl">production mobile app</span> with 50+ daily active users,
+          designed a <span class="hl">custom binary networking protocol</span> over raw UDP from scratch,
+          written firmware in <span class="hl">ARM assembly</span>, and contributed to a platform
+          serving <span class="hl">50,000+ users across 150 countries</span>.
+        </p>
+        <p>
+          I care about code that <span class="acc">actually ships</span>,
+          systems that <span class="acc">hold up under pressure</span>,
+          and understanding things at the <span class="acc">lowest level</span> possible.
+          When I'm not at a keyboard I'm in the <span class="grn">gym</span>.
+        </p>
+      </div>
+      <div class="about-aside">
+        <div class="aside-block">
+          <div class="aside-label">education</div>
+          <div class="aside-row">
+            <span class="aside-key">institution</span>
+            <span class="aside-val">TCD</span>
+          </div>
+          <div class="aside-row">
+            <span class="aside-key">degree</span>
+            <span class="aside-val">BAI Eng.</span>
+          </div>
+          <div class="aside-row">
+            <span class="aside-key">year</span>
+            <span class="aside-val acc">3 / 4</span>
+          </div>
+          <div class="aside-row">
+            <span class="aside-key">graduation</span>
+            <span class="aside-val">May 2027</span>
+          </div>
+        </div>
+        <div class="aside-block">
+          <div class="aside-label">interests</div>
+          <div class="aside-row">
+            <span class="aside-key">domains</span>
+            <span class="aside-val">Software · Hardware · AI</span>
+          </div>
+          <div class="aside-row">
+            <span class="aside-key">outside work</span>
+            <span class="aside-val">gym</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 02 PROJECTS ── -->
+  <section class="sec" id="projects">
+    <div class="sec-head reveal">
+      <div class="sec-num">02</div>
+      <h2 class="sec-title">Projects<span>.</span></h2>
+    </div>
+    <div class="reveal">
+      <div class="proj-header-row">
+        <span>name</span>
+        <span>description</span>
+        <span>stack</span>
+        <span style="text-align:right">link</span>
+      </div>
+      <div class="proj-list">
+
+        <div class="proj-item">
+          <div class="proj-name-col">
+            <div class="proj-name">Protocol</div>
+            <div class="proj-meta">React Native · Mobile<br/>Jul 2025 – present</div>
+          </div>
+          <div class="proj-desc-col">Cross-platform fitness tracking app with 50+ daily active users. Owned the full product lifecycle from idea to production independently, iterating on real user feedback across multiple releases.</div>
+          <div class="proj-stack-col">
+            <span class="proj-tag">React Native</span>
+            <span class="proj-tag">TypeScript</span>
+            <span class="proj-tag">Node.js</span>
+            <span class="proj-tag">SQLite</span>
+          </div>
+          <div class="proj-link-col">
+            <span>demo ↓</span>
+          </div>
+        </div>
+
+        <div class="proj-item">
+          <div class="proj-name-col">
+            <div class="proj-name">DubAI</div>
+            <div class="proj-meta">Python · AI<br/>May – Jun 2025</div>
+          </div>
+          <div class="proj-desc-col">Multilingual voice AI pipeline combining speech recognition, LLM inference, and TTS synthesis. Handles audio encoding, language routing, and response streaming for real-time localised interactions at scale.</div>
+          <div class="proj-stack-col">
+            <span class="proj-tag">Python</span>
+            <span class="proj-tag">OpenAI API</span>
+            <span class="proj-tag">AWS Polly</span>
+          </div>
+          <div class="proj-link-col">
+            <span>demo ↓</span>
+          </div>
+        </div>
+
+        <div class="proj-item">
+          <div class="proj-name-col">
+            <div class="proj-name">Wind Turbine → Space Station</div>
+            <div class="proj-meta">Networking · Systems<br/>Jan – May 2026</div>
+            <div class="proj-badge">custom UDP protocol</div>
+          </div>
+          <div class="proj-desc-col">Custom binary networking protocol over raw UDP — stop-and-wait ARQ, checksum verification, three-node distributed system simulating a LEO satellite relay with configurable packet loss and blackout windows.</div>
+          <div class="proj-stack-col">
+            <span class="proj-tag">Python</span>
+            <span class="proj-tag">UDP Sockets</span>
+            <span class="proj-tag">Distributed</span>
+          </div>
+          <div class="proj-link-col">
+            <a href="#" target="_blank">GitHub</a>
+          </div>
+        </div>
+
+        <div class="proj-item">
+          <div class="proj-name-col">
+            <div class="proj-name">Morse Code Game</div>
+            <div class="proj-meta">Embedded · Hardware<br/>Feb – Apr 2026</div>
+          </div>
+          <div class="proj-desc-col">Interactive game on Maker Pi Pico. GPIO interrupt handler in ARM assembly, 4 difficulty levels, dot/dash timing classification, character decoding, RGB LED feedback, and Watchdog Timer reset.</div>
+          <div class="proj-stack-col">
+            <span class="proj-tag">C</span>
+            <span class="proj-tag">ARM Assembly</span>
+            <span class="proj-tag">Pi Pico</span>
+          </div>
+          <div class="proj-link-col">
+            <a href="#" target="_blank">GitHub</a>
+          </div>
+        </div>
+
+        <div class="proj-item">
+          <div class="proj-name-col">
+            <div class="proj-name">FPGA Digital Systems</div>
+            <div class="proj-meta">Digital Design · FPGA<br/>Jan – May 2026</div>
+          </div>
+          <div class="proj-desc-col">Mini ALU in Verilog — 8 arithmetic/logical ops on 6-bit 2's complement, carry ripple adder. Moore FSM sequence detector with LFSR and counter, results on 7-segment display. Basys3 board.</div>
+          <div class="proj-stack-col">
+            <span class="proj-tag">Verilog</span>
+            <span class="proj-tag">Xilinx Vivado</span>
+            <span class="proj-tag">Basys3</span>
+          </div>
+          <div class="proj-link-col">
+            <a href="#" target="_blank">GitHub</a>
+          </div>
+        </div>
+
+        <div class="proj-item">
+          <div class="proj-name-col">
+            <div class="proj-name">LeetTracker</div>
+            <div class="proj-meta">Python · Automation</div>
+          </div>
+          <div class="proj-desc-col">Tracks LeetCode progress via GraphQL and REST APIs. Cron-scheduled, outputs structured progress tables to terminal.</div>
+          <div class="proj-stack-col">
+            <span class="proj-tag">Python</span>
+            <span class="proj-tag">GraphQL</span>
+            <span class="proj-tag">REST</span>
+          </div>
+          <div class="proj-link-col">
+            <a href="#" target="_blank">GitHub</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 03 EXPERIENCE ── -->
+  <section class="sec" id="experience">
+    <div class="sec-head reveal">
+      <div class="sec-num">03</div>
+      <h2 class="sec-title">Experience<span>.</span></h2>
+    </div>
+    <div class="exp-list reveal">
+
+      <div class="exp-item">
+        <div class="exp-left">
+          <div class="exp-period">Jan 2026 – Apr 2026</div>
+          <div class="exp-type-tag">role</div>
+        </div>
+        <div class="exp-right">
+          <div class="exp-role">Portfolio Analytics Developer</div>
+          <div class="exp-org">Irish Student Managed Fund · Dublin</div>
+          <div class="exp-body">Built a <span class="hl">FastAPI backend</span> centralising structured financial data across three investment desks, owning the full system lifecycle from development to production. Designed validation pipelines and shipped iterative improvements with no supervision while keeping downstream teams unblocked.</div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-left">
+          <div class="exp-period">Jun 2025 – Jul 2025</div>
+          <div class="exp-type-tag">internship</div>
+        </div>
+        <div class="exp-right">
+          <div class="exp-role">Software Engineering Intern</div>
+          <div class="exp-org">ZNotes · Remote</div>
+          <div class="exp-body">Contributed features to a <span class="hl">production platform serving 50,000+ users</span> across 150 countries, working in a live codebase. Delivered independently in a fully remote setting, managing own tasks without day-to-day oversight.</div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-left">
+          <div class="exp-period">Sept 2023 – May 2027</div>
+          <div class="exp-type-tag">education</div>
+        </div>
+        <div class="exp-right">
+          <div class="exp-role">Bachelor of Engineering — Computer Engineering (BAI)</div>
+          <div class="exp-org">Trinity College Dublin</div>
+          <div class="exp-body">On track for <span class="hl">Upper Second Class Honours (2:1)</span>. Relevant modules: Data Structures &amp; Algorithms, Computer Networks, Digital Systems Design, Microprocessor Systems, Operating Systems, Probability &amp; Statistics.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── 04 SKILLS ── -->
+  <section class="sec" id="skills">
+    <div class="sec-head reveal">
+      <div class="sec-num">04</div>
+      <h2 class="sec-title">Skills<span>.</span></h2>
+    </div>
+    <div class="skills-layout reveal">
+      <div class="skill-cat">
+        <div class="skill-cat-name">languages</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">TypeScript</span>
+          <span class="skill-tag">C</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">Bash</span>
+          <span class="skill-tag">Verilog</span>
+          <span class="skill-tag">ARM Assembly</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <div class="skill-cat-name">backend</div>
+        <div class="skill-tags">
+          <span class="skill-tag">FastAPI</span>
+          <span class="skill-tag">Node.js</span>
+          <span class="skill-tag">REST APIs</span>
+          <span class="skill-tag">SQLite</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <div class="skill-cat-name">ai / ml</div>
+        <div class="skill-tags">
+          <span class="skill-tag">OpenAI API</span>
+          <span class="skill-tag">AWS Polly</span>
+          <span class="skill-tag">scikit-learn</span>
+          <span class="skill-tag">Prompt Engineering</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <div class="skill-cat-name">hardware</div>
+        <div class="skill-tags">
+          <span class="skill-tag">FPGA / Vivado</span>
+          <span class="skill-tag">ARM embedded</span>
+          <span class="skill-tag">Digital logic</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <div class="skill-cat-name">infra / tools</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Git</span>
+          <span class="skill-tag">Linux</span>
+          <span class="skill-tag">Docker</span>
+          <span class="skill-tag">AWS</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <div class="skill-cat-name">frontend</div>
+        <div class="skill-tags">
+          <span class="skill-tag">React Native</span>
+          <span class="skill-tag">React</span>
+          <span class="skill-tag">Expo</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 05 CONTACT ── -->
+  <section class="sec" id="contact">
+    <div class="sec-head reveal">
+      <div class="sec-num">05</div>
+      <h2 class="sec-title">Contact<span>.</span></h2>
+    </div>
+    <div class="contact-layout reveal">
+      <div class="contact-intro">
+        <div class="contact-heading">
+          Open to internships<br/>and <em>hard problems.</em>
+        </div>
+        <p class="contact-sub">
+          Based in Dublin. Available summer 2026.<br/>
+          Interested in software engineering, embedded systems, and AI roles.
+        </p>
+      </div>
+      <div class="contact-details">
+        <div class="contact-row">
+          <span class="c-key">Email</span>
+          <a href="mailto:suhailjameel7@gmail.com" class="c-val">suhailjameel7@gmail.com</a>
+        </div>
+        <div class="contact-row">
+          <span class="c-key">GitHub</span>
+          <a href="https://github.com/Sxhail" class="c-val" target="_blank">Sxhail</a>
+        </div>
+        <div class="contact-row">
+          <span class="c-key">LinkedIn</span>
+          <a href="https://linkedin.com/in/suhail-jameel" class="c-val" target="_blank">suhail-jameel</a>
+        </div>
+        <div class="contact-row">
+          <span class="c-key">phone</span>
+          <span class="c-val" style="cursor:default">+353 89 987 8441</span>
+        </div>
+        <div class="contact-row">
+          <span class="c-key">cv</span>
+          <a href="#" class="c-val">download pdf</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- end .content -->
+
+<script>
+/* ── cursor ── */
+const cur = document.getElementById('cur');
+document.addEventListener('mousemove', e => {
+  cur.style.left = e.clientX + 'px';
+  cur.style.top  = e.clientY + 'px';
+});
+document.querySelectorAll('a,button,.proj-item').forEach(el => {
+  el.addEventListener('mouseenter', () => document.body.classList.add('hov'));
+  el.addEventListener('mouseleave', () => document.body.classList.remove('hov'));
+});
+
+/* ── theme toggle ── */
+let dark = true;
+document.getElementById('theme-btn').addEventListener('click', () => {
+  dark = !dark;
+  document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+  document.getElementById('t-icon').textContent = dark ? '☀' : '☾';
+  document.getElementById('t-lbl').textContent  = dark ? 'light mode' : 'dark mode';
+});
+
+/* ── active nav on scroll ── */
+const sections = document.querySelectorAll('.sec');
+const navLinks = document.querySelectorAll('.sn-link');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.id;
+      navLinks.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+      });
+    }
+  });
+}, { threshold: 0.4 });
+sections.forEach(s => io.observe(s));
+
+/* ── scroll reveal ── */
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('vis'); ro.unobserve(e.target); }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+</script>
+</body>
+</html>
