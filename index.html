@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Suhail Jameel — Computer Engineer</title>
+<title>SJ/Engineer</title>
 <meta name="description" content="Suhail Jameel — Computer Engineering student at Trinity College Dublin. Software, embedded systems, and everything in between.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -147,6 +147,9 @@ section{
   font-size:13px;letter-spacing:.18em;text-transform:uppercase;
   color:var(--accent);margin-bottom:18px;
 }
+.accent-word{color:var(--accent);}
+.cursor{display:inline-block;width:.6em;background:var(--accent);animation:blink 1.1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
 
 
 
@@ -250,15 +253,6 @@ footer{
 .reveal{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
 .reveal.in{opacity:1;transform:none}
 
-.toast{
-  position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);
-  background:var(--panel);border:1px solid var(--line);color:var(--text);
-  font-size:13px;letter-spacing:.04em;padding:10px 20px;border-radius:6px;
-  opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;
-  z-index:300;
-}
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-
 /* ---------- responsive ---------- */
 @media (max-width:860px){
   .about-grid,.project{grid-template-columns:1fr}
@@ -290,14 +284,11 @@ footer{
     <a href="#contact">Contact</a>
   </nav>
   <div class="topbar-right">
-    <a class="icon-btn" href="https://github.com/Sxhail" target="_blank" rel="noopener" aria-label="GitHub">
-      <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-    </a>
     <a class="icon-btn" href="https://www.linkedin.com/in/suhail-jameel-34285b268/" target="_blank" rel="noopener" aria-label="LinkedIn">
       <svg viewBox="0 0 16 16"><path d="M0 1.15C0 .52.53 0 1.18 0h13.64C15.47 0 16 .52 16 1.15v13.7c0 .63-.53 1.15-1.18 1.15H1.18A1.17 1.17 0 0 1 0 14.85V1.15zm4.94 12.24V6.17H2.54v7.22h2.4zM3.74 5.18c.84 0 1.36-.55 1.36-1.24-.02-.71-.52-1.25-1.34-1.25S2.4 3.23 2.4 3.94c0 .69.52 1.24 1.32 1.24h.02zm3.35 8.21h2.4V9.36c0-.22.02-.43.08-.59.17-.43.57-.88 1.23-.88.87 0 1.22.66 1.22 1.63v3.87h2.4V9.25c0-2.22-1.18-3.25-2.76-3.25-1.27 0-1.84.7-2.17 1.19v.02h-.01l.01-.02V6.17h-2.4c.03.68 0 7.22 0 7.22z"/></svg>
     </a>
-    <a class="icon-btn" href="mailto:suhailjameel7@gmail.com" aria-label="Email" id="emailBtn">
-      <svg viewBox="0 0 16 16"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-.5a.5.5 0 0 0-.5.5v.4l6.5 4.06L14.5 4.4V4a.5.5 0 0 0-.5-.5H2zm12.5 2.17-5.7 3.56a1.5 1.5 0 0 1-1.6 0L1.5 5.67V12a.5.5 0 0 0 .5.5h12a.5.5 0 0 0 .5-.5V5.67z"/></svg>
+    <a class="icon-btn" href="https://github.com/Sxhail" target="_blank" rel="noopener" aria-label="GitHub">
+      <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
     </a>
     <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">
       <svg viewBox="0 0 16 16" id="themeIcon"><path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/></svg>
@@ -312,11 +303,10 @@ footer{
 <section id="home">
   <div class="hero">
     <div class="hero-info">
-      <div class="hero-eyebrow">Computer Engineering &middot; Trinity College Dublin</div>
-      <h1>Suhail Jameel</h1>
-      <p class="sub">I build at the intersection of <em>software and hardware</em>, comfortable anywhere from a React Native frontend down to GPIO interrupt handlers written in assembly.</p>
-      <p class="sub">That range is not accidental. I like understanding systems all the way down: how a fitness app persists state offline, how a custom UDP protocol survives packet loss, how a Moore FSM finds a codeword in a pseudorandom bitstream on real silicon.</p>
-      <p class="sub">Originally from the <em>UAE</em>, now based in <em>Dublin</em>. When I am not building, I am at the gym.</p>
+      <h1>Engineer by <span class="accent-word">trade</span><span class="cursor">&nbsp;</span></h1>
+      <p class="sub">I like building things and figuring out how they work underneath. Most of my time these days goes into the hardware side, FPGAs, embedded boards, low level firmware, but I still build full apps too.</p>
+      <p class="sub">A few examples: a fitness app that had to work fully offline, a UDP protocol that had to survive packet loss on its own, an FSM that had to find a pattern in a pseudorandom bitstream on real silicon.</p>
+      <p class="sub">Originally from the UAE, based in Dublin now. When I am not building something, I am at the gym.</p>
       <div class="cta-row">
         <a class="btn primary" href="#projects">View projects</a>
         <a class="btn" href="#contact">Get in touch</a>
@@ -428,7 +418,6 @@ footer{
       </div>
       <div class="proj-links">
         <button class="watch-btn" data-video="1VPm0qSTfbNMkaIep82k_32DtkvIbCKeT">Watch demo &rarr;</button>
-        <a href="https://github.com/Sxhail" target="_blank" rel="noopener">View repository &rarr;</a>
       </div>
     </div>
   </article>
@@ -436,12 +425,12 @@ footer{
   <!-- LeetTracker -->
   <article class="project reveal">
     <div class="proj-media no-video">
-      <img src="CN_cover.jpg" alt="LeetTracker terminal output" style="filter:grayscale(.6)">
+      <img src="leettracker_cover.png" alt="LeetTracker terminal output">
     </div>
     <div class="proj-info">
       <div class="proj-index">P/06 &middot; AUTOMATION</div>
       <h3>LeetTracker</h3>
-      <div class="proj-dates">July 2024 &ndash; May 2025</div>
+      <div class="proj-dates">July 2025 &ndash; May 2025</div>
       <p>A Python automation tool that tracks LeetCode progress via GraphQL and REST APIs. Cron scheduled, it fetches submission data and outputs structured progress tables straight to the terminal.</p>
       <div class="tags">
         <span class="tag">Python</span><span class="tag">GraphQL</span><span class="tag">REST APIs</span><span class="tag">Cron Jobs</span>
@@ -515,7 +504,7 @@ footer{
     </div>
     <div class="skill-group reveal">
       <h3>Hardware &amp; Embedded</h3>
-      <div class="tags"><span class="tag">FPGA / Vivado</span><span class="tag">ARM Embedded</span><span class="tag">Digital Logic</span><span class="tag">Basys3</span><span class="tag">Raspberry Pi Pico</span><span class="tag">GDB</span><span class="tag">Oscilloscope</span></div>
+      <div class="tags"><span class="tag">FPGA / Vivado</span><span class="tag">ARM Embedded</span><span class="tag">Digital Logic</span><span class="tag">Basys3</span><span class="tag">Raspberry Pi Pico</span><span class="tag">GDB</span></div>
     </div>
     <div class="skill-group reveal">
       <h3>Systems &amp; Networking</h3>
@@ -523,7 +512,7 @@ footer{
     </div>
     <div class="skill-group reveal">
       <h3>Infra &amp; Tools</h3>
-      <div class="tags"><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">Docker</span><span class="tag">AWS</span><span class="tag">Figma</span><span class="tag">Microsoft Office</span></div>
+      <div class="tags"><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">AWS</span><span class="tag">Figma</span><span class="tag">Microsoft Office</span></div>
     </div>
     <div class="skill-group reveal">
       <h3>Ways of Working</h3>
@@ -537,7 +526,7 @@ footer{
   <div class="sec-label"><b>04</b> Contact</div>
   <div class="contact-wrap reveal">
     <h2>Let's talk.</h2>
-    <p>Based in Dublin, Ireland. The fastest way to reach me is email, or find more of what I have built on GitHub.</p>
+    <p>The fastest way to reach me is email.</p>
     <ul class="contact-list">
       <li><span class="k">Email</span><a href="mailto:suhailjameel7@gmail.com">suhailjameel7@gmail.com</a></li>
       <li><span class="k">Phone</span><a href="tel:+353899878441">+353 89 987 8441</a></li>
@@ -571,19 +560,6 @@ themeToggle.addEventListener('click', () => {
   const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
   root.setAttribute('data-theme', next);
   localStorage.setItem('theme', next);
-});
-
-// ---------- email copy ----------
-const emailBtn = document.getElementById('emailBtn');
-const toast = document.getElementById('toast');
-emailBtn.addEventListener('click', (e) => {
-  e.preventDefault();
-  navigator.clipboard.writeText('suhailjameel7@gmail.com').then(() => {
-    toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 2000);
-  }).catch(() => {
-    window.location.href = 'mailto:suhailjameel7@gmail.com';
-  });
 });
 
 // ---------- mobile menu ----------
@@ -629,6 +605,5 @@ document.getElementById('modalClose').addEventListener('click', closeVideo);
 modal.addEventListener('click', e => { if (e.target === modal) closeVideo(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeVideo(); });
 </script>
-<div id="toast" class="toast">Email copied to clipboard</div>
 </body>
 </html>
