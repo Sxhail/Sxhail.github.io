@@ -304,9 +304,9 @@ footer{
   <div class="hero">
     <div class="hero-info">
       <h1>Engineer by <span class="accent-word">trade</span><span class="cursor">&nbsp;</span></h1>
-      <p class="sub">I like building things and figuring out how they work underneath. Most of my time these days goes into the hardware side, FPGAs, embedded boards, low level firmware, but I still build full apps too.</p>
-      <p class="sub">A few examples: a fitness app that had to work fully offline, a UDP protocol that had to survive packet loss on its own, an FSM that had to find a pattern in a pseudorandom bitstream on real silicon.</p>
-      <p class="sub">Originally from the UAE, based in Dublin now. When I am not building something, I am at the gym.</p>
+      <p class="sub">Computer Engineering student at Trinity College Dublin. Most of my time goes into the hardware and systems side, FPGAs, embedded boards, low level firmware, and applying this to software systems.</p>
+      <p class="sub">I like projects that force me to understand something properly, like a UDP protocol that has to survive packet loss on its own, or an FSM that has to find a pattern in a pseudorandom bitstream on actual hardware.</p>
+      <p class="sub">Originally from the UAE, living in Dublin now. Outside of this, you can find me at the gym.</p>
       <div class="cta-row">
         <a class="btn primary" href="#projects">View projects</a>
         <a class="btn" href="#contact">Get in touch</a>
@@ -348,29 +348,13 @@ footer{
     </div>
   </article>
 
-  <!-- DubAI -->
-  <article class="project reveal">
-    <div class="proj-media no-video">
-      <img src="DubAI_cover.jpg" alt="DubAI app screenshot">
-    </div>
-    <div class="proj-info">
-      <div class="proj-index">P/02 &middot; VOICE AI</div>
-      <h3>DubAI</h3>
-      <div class="proj-dates">May 2025 &ndash; June 2025</div>
-      <p>A multilingual voice AI pipeline combining speech recognition, LLM inference, and text to speech into one deployable system for automating conversational guest interactions. Handles audio encoding, language routing, and response streaming across sequential API calls for real time localised responses at scale.</p>
-      <div class="tags">
-        <span class="tag">Python</span><span class="tag">OpenAI API</span><span class="tag">AWS Polly</span><span class="tag">LLM Pipelines</span>
-      </div>
-    </div>
-  </article>
-
   <!-- Wind Turbine to Space Station -->
   <article class="project reveal">
     <div class="proj-media no-video">
       <img src="CN_cover.jpg" alt="Wind Turbine to Space Station Protocol cover">
     </div>
     <div class="proj-info">
-      <div class="proj-index">P/03 &middot; NETWORKING</div>
+      <div class="proj-index">P/02 &middot; NETWORKING</div>
       <h3>Wind Turbine to Space Station Protocol</h3>
       <div class="proj-dates">January 2026 &ndash; May 2026</div>
       <p>A custom binary networking protocol built from scratch over raw UDP: 9 byte fixed header, five message types, checksum verification, and stop and wait ARQ. Runs as a three node distributed system across physically separate machines simulating a LEO satellite relay with configurable propagation delay, packet loss, and blackout windows. NACK triggered retransmission handles corruption.</p>
@@ -389,7 +373,7 @@ footer{
       <img src="fpga_cover.jpeg" alt="FPGA Sequence Detector on Basys3 board">
     </div>
     <div class="proj-info">
-      <div class="proj-index">P/04 &middot; DIGITAL LOGIC</div>
+      <div class="proj-index">P/03 &middot; DIGITAL LOGIC</div>
       <h3>FPGA Sequence Detector</h3>
       <div class="proj-dates">January 2026 &ndash; May 2026</div>
       <p>A Mini ALU in Verilog supporting eight arithmetic and logical operations on 6 bit twos complement inputs, built from a carry ripple adder and targeted to the Basys3 board. Plus a sequence detector using a Moore FSM, LFSR, and counter to find a codeword inside a pseudorandom bitstream, with output on the 7 segment display and LEDs.</p>
@@ -409,7 +393,7 @@ footer{
       <span class="play-tag">&#9654; DEMO</span>
     </div>
     <div class="proj-info">
-      <div class="proj-index">P/05 &middot; EMBEDDED</div>
+      <div class="proj-index">P/04 &middot; EMBEDDED</div>
       <h3>Morse Code Game</h3>
       <div class="proj-dates">February 2026 &ndash; April 2026</div>
       <p>An interactive embedded game with four difficulty levels on a Maker Pi Pico. A GPIO interrupt handler written in ARM assembly detects Morse input from button press durations. Timing logic, dot and dash classification, character decoding, RGB LED feedback, and a Watchdog Timer reset run in a mixed C and assembly codebase with clean layer separation.</p>
@@ -422,15 +406,31 @@ footer{
     </div>
   </article>
 
+  <!-- DubAI -->
+  <article class="project reveal">
+    <div class="proj-media no-video">
+      <img src="DubAI_cover.jpg" alt="DubAI app screenshot">
+    </div>
+    <div class="proj-info">
+      <div class="proj-index">P/05 &middot; VOICE AI</div>
+      <h3>DubAI</h3>
+      <div class="proj-dates">May 2025 &ndash; June 2025</div>
+      <p>A multilingual voice AI pipeline combining speech recognition, LLM inference, and text to speech into one deployable system for automating conversational guest interactions. Handles audio encoding, language routing, and response streaming across sequential API calls for real time localised responses at scale.</p>
+      <div class="tags">
+        <span class="tag">Python</span><span class="tag">OpenAI API</span><span class="tag">AWS Polly</span><span class="tag">LLM Pipelines</span>
+      </div>
+    </div>
+  </article>
+
   <!-- LeetTracker -->
   <article class="project reveal">
     <div class="proj-media no-video">
-      <img src="leettracker_cover.png" alt="LeetTracker terminal output">
+      <img src="leettracker_cover.svg" alt="LeetTracker terminal output">
     </div>
     <div class="proj-info">
       <div class="proj-index">P/06 &middot; AUTOMATION</div>
       <h3>LeetTracker</h3>
-      <div class="proj-dates">July 2025 &ndash; May 2025</div>
+      <div class="proj-dates">July 2024 &ndash; May 2025</div>
       <p>A Python automation tool that tracks LeetCode progress via GraphQL and REST APIs. Cron scheduled, it fetches submission data and outputs structured progress tables straight to the terminal.</p>
       <div class="tags">
         <span class="tag">Python</span><span class="tag">GraphQL</span><span class="tag">REST APIs</span><span class="tag">Cron Jobs</span>
@@ -491,24 +491,24 @@ footer{
       <div class="tags"><span class="tag">Python</span><span class="tag">TypeScript</span><span class="tag">JavaScript</span><span class="tag">C</span><span class="tag">SQL</span><span class="tag">Bash</span><span class="tag">Verilog</span><span class="tag">ARM Assembly</span></div>
     </div>
     <div class="skill-group reveal">
-      <h3>Frontend &amp; Mobile</h3>
-      <div class="tags"><span class="tag">React Native</span><span class="tag">React</span><span class="tag">Expo</span><span class="tag">HTML/CSS</span></div>
-    </div>
-    <div class="skill-group reveal">
-      <h3>Backend &amp; Data</h3>
-      <div class="tags"><span class="tag">FastAPI</span><span class="tag">Node.js</span><span class="tag">REST APIs</span><span class="tag">SQLite</span><span class="tag">Data Pipelines</span><span class="tag">GraphQL</span></div>
-    </div>
-    <div class="skill-group reveal">
-      <h3>AI / ML</h3>
-      <div class="tags"><span class="tag">OpenAI API</span><span class="tag">AWS Polly</span><span class="tag">scikit-learn</span><span class="tag">Prompt Engineering</span><span class="tag">LLM Integration</span><span class="tag">Computer Vision</span></div>
-    </div>
-    <div class="skill-group reveal">
       <h3>Hardware &amp; Embedded</h3>
       <div class="tags"><span class="tag">FPGA / Vivado</span><span class="tag">ARM Embedded</span><span class="tag">Digital Logic</span><span class="tag">Basys3</span><span class="tag">Raspberry Pi Pico</span><span class="tag">GDB</span></div>
     </div>
     <div class="skill-group reveal">
       <h3>Systems &amp; Networking</h3>
       <div class="tags"><span class="tag">UDP Sockets</span><span class="tag">Distributed Systems</span><span class="tag">Multithreading</span><span class="tag">Binary Protocols</span><span class="tag">Linux</span></div>
+    </div>
+    <div class="skill-group reveal">
+      <h3>Backend &amp; Data</h3>
+      <div class="tags"><span class="tag">FastAPI</span><span class="tag">Node.js</span><span class="tag">REST APIs</span><span class="tag">SQLite</span><span class="tag">Data Pipelines</span><span class="tag">GraphQL</span></div>
+    </div>
+    <div class="skill-group reveal">
+      <h3>Frontend &amp; Mobile</h3>
+      <div class="tags"><span class="tag">React Native</span><span class="tag">React</span><span class="tag">Expo</span><span class="tag">HTML/CSS</span></div>
+    </div>
+    <div class="skill-group reveal">
+      <h3>AI / ML</h3>
+      <div class="tags"><span class="tag">OpenAI API</span><span class="tag">AWS Polly</span><span class="tag">scikit-learn</span><span class="tag">Prompt Engineering</span><span class="tag">LLM Integration</span><span class="tag">Computer Vision</span></div>
     </div>
     <div class="skill-group reveal">
       <h3>Infra &amp; Tools</h3>
@@ -526,7 +526,7 @@ footer{
   <div class="sec-label"><b>04</b> Contact</div>
   <div class="contact-wrap reveal">
     <h2>Let's talk.</h2>
-    <p>The fastest way to reach me is email.</p>
+    <p>Based in Dublin, Ireland. The fastest way to reach me is email, or we can connect on LinkedIn.</p>
     <ul class="contact-list">
       <li><span class="k">Email</span><a href="mailto:suhailjameel7@gmail.com">suhailjameel7@gmail.com</a></li>
       <li><span class="k">Phone</span><a href="tel:+353899878441">+353 89 987 8441</a></li>
