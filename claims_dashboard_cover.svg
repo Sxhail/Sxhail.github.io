@@ -1,0 +1,126 @@
+<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#111c2a"/>
+    <stop offset="1" stop-color="#0c1420"/>
+  </linearGradient>
+  <linearGradient id="area" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#46B6A8" stop-opacity="0.4"/>
+    <stop offset="1" stop-color="#46B6A8" stop-opacity="0"/>
+  </linearGradient>
+</defs>
+
+<rect width="800" height="500" fill="url(#bg)"/>
+
+<!-- top bar -->
+<rect x="0" y="0" width="800" height="46" fill="#101a27"/>
+<line x1="0" y1="46" x2="800" y2="46" stroke="#223349" stroke-width="1"/>
+<rect x="28" y="16" width="14" height="14" rx="3" fill="#16283a" stroke="#2b415c" stroke-width="1"/>
+<rect x="31" y="21" width="2" height="6" fill="#46B6A8"/>
+<rect x="35" y="21" width="2" height="6" fill="#E4A85B"/>
+<text x="52" y="28" font-family="monospace" font-size="12" fill="#EAF0F6" letter-spacing="1">CLAIMS &amp; RISK CONSOLE</text>
+<text x="620" y="28" font-family="monospace" font-size="9" fill="#5E708A" letter-spacing="1">MOTOR BOOK · 2015</text>
+
+<!-- KPI strip -->
+<g font-family="monospace">
+  <!-- kpi 1 -->
+  <rect x="28" y="66" width="115" height="70" rx="8" fill="#16233350"/>
+  <rect x="28" y="66" width="3" height="70" fill="#5E9BD8"/>
+  <text x="42" y="86" font-size="8" fill="#8397AD" letter-spacing="1">CLAIMS</text>
+  <text x="42" y="112" font-size="19" fill="#EAF0F6" font-weight="600">1,000</text>
+
+  <!-- kpi 2 -->
+  <rect x="153" y="66" width="115" height="70" rx="8" fill="#16233350"/>
+  <rect x="153" y="66" width="3" height="70" fill="#5E9BD8"/>
+  <text x="167" y="86" font-size="8" fill="#8397AD" letter-spacing="1">SETTLED</text>
+  <text x="167" y="112" font-size="19" fill="#EAF0F6" font-weight="600">$52.8M</text>
+
+  <!-- kpi 3 -->
+  <rect x="278" y="66" width="115" height="70" rx="8" fill="#16233350"/>
+  <rect x="278" y="66" width="3" height="70" fill="#5E9BD8"/>
+  <text x="292" y="86" font-size="8" fill="#8397AD" letter-spacing="1">AVG CLAIM</text>
+  <text x="292" y="112" font-size="19" fill="#EAF0F6" font-weight="600">$52.8k</text>
+
+  <!-- kpi 4 fraud -->
+  <rect x="403" y="66" width="115" height="70" rx="8" fill="#2a191950"/>
+  <rect x="403" y="66" width="3" height="70" fill="#E5675B"/>
+  <text x="417" y="86" font-size="8" fill="#8397AD" letter-spacing="1">FRAUD RATE</text>
+  <text x="417" y="112" font-size="19" fill="#F0938A" font-weight="600">24.7%</text>
+
+  <!-- kpi 5 -->
+  <rect x="528" y="66" width="115" height="70" rx="8" fill="#2a191950"/>
+  <rect x="528" y="66" width="3" height="70" fill="#E5675B"/>
+  <text x="542" y="86" font-size="8" fill="#8397AD" letter-spacing="1">FLAGGED $</text>
+  <text x="542" y="112" font-size="19" fill="#F0938A" font-weight="600">$16.7M</text>
+
+  <!-- kpi 6 -->
+  <rect x="653" y="66" width="119" height="70" rx="8" fill="#2a231950"/>
+  <rect x="653" y="66" width="3" height="70" fill="#E4A85B"/>
+  <text x="667" y="86" font-size="8" fill="#8397AD" letter-spacing="1">LOSS RATIO</text>
+  <text x="667" y="112" font-size="19" fill="#EAF0F6" font-weight="600">43.8&#215;</text>
+</g>
+
+<!-- panel: bar rows (left) -->
+<rect x="28" y="156" width="360" height="176" rx="10" fill="#15213150" stroke="#22334940"/>
+<text x="44" y="180" font-family="monospace" font-size="10" fill="#8397AD" letter-spacing="1">CLAIMS BY INCIDENT TYPE</text>
+
+<g font-family="monospace" font-size="9" fill="#8397AD">
+  <text x="44" y="204">Single Vehicle</text>
+  <rect x="150" y="196" width="180" height="12" rx="3" fill="#20324A"/>
+  <rect x="150" y="196" width="170" height="12" rx="3" fill="#5E9BD8"/>
+
+  <text x="44" y="228">Multi Vehicle</text>
+  <rect x="150" y="220" width="180" height="12" rx="3" fill="#20324A"/>
+  <rect x="150" y="220" width="167" height="12" rx="3" fill="#5E9BD8"/>
+
+  <text x="44" y="252">Vehicle Theft</text>
+  <rect x="150" y="244" width="180" height="12" rx="3" fill="#20324A"/>
+  <rect x="150" y="244" width="24" height="12" rx="3" fill="#5E9BD8"/>
+
+  <text x="44" y="276">Parked Car</text>
+  <rect x="150" y="268" width="180" height="12" rx="3" fill="#20324A"/>
+  <rect x="150" y="268" width="20" height="12" rx="3" fill="#5E9BD8"/>
+</g>
+
+<text x="44" y="312" font-family="monospace" font-size="10" fill="#8397AD" letter-spacing="1">FRAUD BY SEVERITY</text>
+<g font-family="monospace" font-size="9">
+  <rect x="150" y="304" width="180" height="10" rx="3" fill="#20324A"/>
+  <rect x="150" y="304" width="150" height="10" rx="3" fill="#E5675B"/>
+  <text x="44" y="313" fill="#8397AD">Major</text>
+</g>
+
+<!-- panel: donut (right) -->
+<rect x="404" y="156" width="368" height="176" rx="10" fill="#15213150" stroke="#22334940"/>
+<text x="420" y="180" font-family="monospace" font-size="10" fill="#8397AD" letter-spacing="1">SEVERITY MIX</text>
+
+<g transform="translate(468,255)">
+  <circle r="52" fill="none" stroke="#20324A" stroke-width="20"/>
+  <circle r="52" fill="none" stroke="#5E9BD8" stroke-width="20" stroke-dasharray="82 244" stroke-dashoffset="0" transform="rotate(-90)"/>
+  <circle r="52" fill="none" stroke="#46B6A8" stroke-width="20" stroke-dasharray="126 244" stroke-dashoffset="-82" transform="rotate(-90)"/>
+  <circle r="52" fill="none" stroke="#E4A85B" stroke-width="20" stroke-dasharray="98 244" stroke-dashoffset="-208" transform="rotate(-90)"/>
+  <circle r="52" fill="none" stroke="#E5675B" stroke-width="20" stroke-dasharray="20 244" stroke-dashoffset="-306" transform="rotate(-90)"/>
+  <text x="0" y="-2" text-anchor="middle" font-family="monospace" font-size="22" fill="#EAF0F6" font-weight="600">1,000</text>
+  <text x="0" y="16" text-anchor="middle" font-family="monospace" font-size="8" fill="#8397AD">CLAIMS</text>
+</g>
+
+<g font-family="monospace" font-size="9" fill="#8397AD">
+  <rect x="590" y="196" width="9" height="9" fill="#5E9BD8"/><text x="606" y="204">Minor damage</text>
+  <rect x="590" y="220" width="9" height="9" fill="#46B6A8"/><text x="606" y="228">Minor damage</text>
+  <rect x="590" y="244" width="9" height="9" fill="#E4A85B"/><text x="606" y="252">Major damage</text>
+  <rect x="590" y="268" width="9" height="9" fill="#E5675B"/><text x="606" y="276">Total loss</text>
+</g>
+
+<!-- trend area -->
+<rect x="28" y="346" width="744" height="126" rx="10" fill="#15213150" stroke="#22334940"/>
+<text x="44" y="368" font-family="monospace" font-size="10" fill="#8397AD" letter-spacing="1">WEEKLY RISK TREND</text>
+<polyline points="52,440 130,420 208,428 286,398 364,410 442,380 520,392 598,360 676,372 744,344"
+  fill="none" stroke="#46B6A8" stroke-width="2.5"/>
+<polygon points="52,440 130,420 208,428 286,398 364,410 442,380 520,392 598,360 676,372 744,344 744,456 52,456"
+  fill="url(#area)"/>
+<g fill="#46B6A8">
+  <circle cx="52" cy="440" r="3"/><circle cx="130" cy="420" r="3"/><circle cx="208" cy="428" r="3"/>
+  <circle cx="286" cy="398" r="3"/><circle cx="364" cy="410" r="3"/><circle cx="442" cy="380" r="3"/>
+  <circle cx="520" cy="392" r="3"/><circle cx="598" cy="360" r="3"/><circle cx="676" cy="372" r="3"/>
+  <circle cx="744" cy="344" r="3"/>
+</g>
+</svg>
