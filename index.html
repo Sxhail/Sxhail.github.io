@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+
+<html data-theme="dark" lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>SJ/Engineer</title>
-<meta name="description" content="Suhail Jameel — Computer Engineering student at Trinity College Dublin. Software, embedded systems, and everything in between.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<meta content="Suhail Jameel — Computer Engineering student at Trinity College Dublin. Software, embedded systems, and everything in between." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&amp;display=swap" rel="stylesheet"/>
 <style>
 :root{
   --bg:#080808;
@@ -172,6 +173,14 @@ section{
   background:var(--accent);color:#fff;
 }
 .proj-media.no-video{cursor:default}
+.proj-placeholder{
+  width:100%;height:320px;display:flex;flex-direction:column;justify-content:flex-end;
+  padding:28px;background:linear-gradient(145deg,var(--panel),var(--bg-soft));
+  border-bottom:1px solid var(--line);
+}
+.proj-placeholder .ph-kicker{font-size:11px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;margin-bottom:8px}
+.proj-placeholder .ph-title{font-size:clamp(24px,3vw,38px);line-height:1.08;font-weight:500;letter-spacing:-.03em;color:var(--text)}
+.proj-placeholder .ph-stack{font-size:12px;color:var(--text-faint);margin-top:12px;line-height:1.5}
 .proj-info .proj-index{font-size:13px;color:var(--text-faint);letter-spacing:.14em;margin-bottom:12px}
 .proj-info h3{font-size:26px;font-weight:500;margin-bottom:8px}
 .proj-info .proj-dates{font-size:13px;color:var(--text-faint);margin-bottom:18px}
@@ -273,302 +282,318 @@ footer{
 </style>
 </head>
 <body>
-
 <header class="topbar">
-  <a class="brand" href="#home"><b>S</b>UHAIL <b>J</b>AMEEL</a>
-  <nav class="nav" id="nav">
-    <a href="#home" class="active">Home</a>
-    <a href="#projects">Projects</a>
-    <a href="#experience">Experience</a>
-    <a href="#skills">Skills</a>
-    <a href="#contact">Contact</a>
-  </nav>
-  <div class="topbar-right">
-    <a class="icon-btn" href="https://www.linkedin.com/in/suhail-jameel-34285b268/" target="_blank" rel="noopener" aria-label="LinkedIn">
-      <svg viewBox="0 0 16 16"><path d="M0 1.15C0 .52.53 0 1.18 0h13.64C15.47 0 16 .52 16 1.15v13.7c0 .63-.53 1.15-1.18 1.15H1.18A1.17 1.17 0 0 1 0 14.85V1.15zm4.94 12.24V6.17H2.54v7.22h2.4zM3.74 5.18c.84 0 1.36-.55 1.36-1.24-.02-.71-.52-1.25-1.34-1.25S2.4 3.23 2.4 3.94c0 .69.52 1.24 1.32 1.24h.02zm3.35 8.21h2.4V9.36c0-.22.02-.43.08-.59.17-.43.57-.88 1.23-.88.87 0 1.22.66 1.22 1.63v3.87h2.4V9.25c0-2.22-1.18-3.25-2.76-3.25-1.27 0-1.84.7-2.17 1.19v.02h-.01l.01-.02V6.17h-2.4c.03.68 0 7.22 0 7.22z"/></svg>
-    </a>
-    <a class="icon-btn" href="https://github.com/Sxhail" target="_blank" rel="noopener" aria-label="GitHub">
-      <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-    </a>
-    <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">
-      <svg viewBox="0 0 16 16" id="themeIcon"><path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/></svg>
-    </button>
-    <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Menu">
-      <svg viewBox="0 0 16 16"><path d="M1 3h14v1.5H1V3zm0 4.25h14v1.5H1v-1.5zM1 11.5h14V13H1v-1.5z"/></svg>
-    </button>
-  </div>
+<a class="brand" href="#home"><b>S</b>UHAIL <b>J</b>AMEEL</a>
+<nav class="nav" id="nav">
+<a class="active" href="#home">Home</a>
+<a href="#projects">Projects</a>
+<a href="#experience">Experience</a>
+<a href="#skills">Skills</a>
+<a href="#contact">Contact</a>
+</nav>
+<div class="topbar-right">
+<a aria-label="LinkedIn" class="icon-btn" href="https://www.linkedin.com/in/suhail-jameel-34285b268/" rel="noopener" target="_blank">
+<svg viewbox="0 0 16 16"><path d="M0 1.15C0 .52.53 0 1.18 0h13.64C15.47 0 16 .52 16 1.15v13.7c0 .63-.53 1.15-1.18 1.15H1.18A1.17 1.17 0 0 1 0 14.85V1.15zm4.94 12.24V6.17H2.54v7.22h2.4zM3.74 5.18c.84 0 1.36-.55 1.36-1.24-.02-.71-.52-1.25-1.34-1.25S2.4 3.23 2.4 3.94c0 .69.52 1.24 1.32 1.24h.02zm3.35 8.21h2.4V9.36c0-.22.02-.43.08-.59.17-.43.57-.88 1.23-.88.87 0 1.22.66 1.22 1.63v3.87h2.4V9.25c0-2.22-1.18-3.25-2.76-3.25-1.27 0-1.84.7-2.17 1.19v.02h-.01l.01-.02V6.17h-2.4c.03.68 0 7.22 0 7.22z"></path></svg>
+</a>
+<a aria-label="GitHub" class="icon-btn" href="https://github.com/Sxhail" rel="noopener" target="_blank">
+<svg viewbox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
+</a>
+<button aria-label="Toggle theme" class="icon-btn" id="themeToggle">
+<svg id="themeIcon" viewbox="0 0 16 16"><path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"></path></svg>
+</button>
+<button aria-label="Menu" class="icon-btn menu-toggle" id="menuToggle">
+<svg viewbox="0 0 16 16"><path d="M1 3h14v1.5H1V3zm0 4.25h14v1.5H1v-1.5zM1 11.5h14V13H1v-1.5z"></path></svg>
+</button>
+</div>
 </header>
-
 <!-- ================= HOME (hero + about merged) ================= -->
 <section id="home">
-  <div class="hero">
-    <div class="hero-info">
-      <h1>Engineer by <span class="accent-word">trade</span><span class="cursor">&nbsp;</span></h1>
-      <p class="sub">Computer Engineering student at Trinity College Dublin. Most of my time goes into the hardware and systems side, FPGAs, embedded boards, low level firmware, and applying this to software systems.</p>
-      <p class="sub">I like projects that force me to understand something properly, like a UDP protocol that has to survive packet loss on its own, or an FSM that has to find a pattern in a pseudorandom bitstream on actual hardware.</p>
-      <p class="sub">Originally from the UAE, living in Dublin now. Outside of this, you can find me at the gym.</p>
-      <div class="cta-row">
-        <a class="btn primary" href="#projects">View projects</a>
-        <a class="btn" href="#contact">Get in touch</a>
-      </div>
-    </div>
-    <div class="hero-right">
-      <div class="hero-photo">
-        <img src="photo.jpeg" alt="Suhail Jameel">
-      </div>
-      <div class="hero-edu">
-        <div class="hero-edu-name">Trinity College Dublin</div>
-        <div class="hero-edu-sub">Computer Engineering</div>
-      </div>
-    </div>
-  </div>
+<div class="hero">
+<div class="hero-info">
+<h1>Engineer by <span class="accent-word">trade</span><span class="cursor"> </span></h1>
+<p class="sub">Computer Engineering student at Trinity College Dublin with hands-on experience across software, embedded systems, cloud infrastructure, and applied AI. I enjoy the parts of engineering where you have to understand how the whole system behaves, not just make one piece work.</p>
+<p class="sub">I'm especially interested in backend and systems engineering, automation, developer tools, and the space where software meets hardware. I like taking rough ideas, learning whatever I need along the way, and turning them into reliable products that people can actually use.</p>
+<p class="sub">Long term, I want to work on technically demanding products and infrastructure at scale. Originally from the UAE, now based in Dublin.</p>
+<div class="cta-row">
+<a class="btn primary" href="#projects">View projects</a>
+<a class="btn" href="#contact">Get in touch</a>
+</div>
+</div>
+<div class="hero-right">
+<div class="hero-photo">
+<img alt="Suhail Jameel" src="photo.jpeg"/>
+</div>
+<div class="hero-edu">
+<div class="hero-edu-name">Trinity College Dublin</div>
+<div class="hero-edu-sub">Computer Engineering</div>
+</div>
+</div>
+</div>
 </section>
-
 <!-- ================= PROJECTS ================= -->
 <section id="projects">
-  <div class="sec-label"><b>01</b> Projects</div>
+<div class="sec-label"><b>01</b> Projects</div>
 
-  <!-- Protocol -->
-  <article class="project reveal">
-    <div class="proj-media" data-video="1u4Z9S3IxXZcwqljoGFmzPLW59tvHfIDC">
-      <img src="protocol_cover.jpeg" alt="Protocol app screenshot">
-      <span class="play-tag">&#9654; DEMO</span>
-    </div>
-    <div class="proj-info">
-      <div class="proj-index">P/01 &middot; IN PRODUCTION</div>
-      <h3>Protocol</h3>
-      <div class="proj-dates">July 2025 &ndash; present</div>
-      <p>A cross platform fitness tracking app for logging workouts and following structured training programs. Includes a weekly training calendar, program progress tracking, and an interactive muscle anatomy tracker that visualises training volume by muscle group, color coded by recovery status. Built with an offline first local database and currently used by 50+ daily active users.</p>
-      <div class="tags">
-        <span class="tag">React Native</span><span class="tag">TypeScript</span><span class="tag">Node.js</span><span class="tag">SQLite</span>
-      </div>
-      <div class="proj-links">
-        <button class="watch-btn" data-video="1u4Z9S3IxXZcwqljoGFmzPLW59tvHfIDC">Watch demo &rarr;</button>
-      </div>
-    </div>
-  </article>
-
-  <!-- Wind Turbine to Space Station -->
-  <article class="project reveal">
-    <div class="proj-media no-video">
-      <img src="CN cover.png" alt="Wind Turbine to Space Station Protocol cover">
-    </div>
-    <div class="proj-info">
-      <div class="proj-index">P/02 &middot; NETWORKING</div>
-      <h3>Satellite Relay Protocol</h3>
-      <div class="proj-dates">January 2026 &ndash; May 2026</div>
-      <p>A custom binary networking protocol built from scratch over raw UDP: 9 byte fixed header, five message types, checksum verification, and stop and wait ARQ. Runs as a three node distributed system across physically separate machines simulating a LEO satellite relay with configurable propagation delay, packet loss, and blackout windows. NACK triggered retransmission handles corruption.</p>
-      <div class="tags">
-        <span class="tag">Python</span><span class="tag">UDP Sockets</span><span class="tag">Distributed Systems</span><span class="tag">Binary Protocols</span>
-      </div>
-      <div class="proj-links">
-        <a href="https://github.com/Sxhail/wind-turbine-space-station-protocol" target="_blank" rel="noopener">View repository &rarr;</a>
-      </div>
-    </div>
-  </article>
-
-  <!-- FPGA -->
-  <article class="project reveal">
-    <div class="proj-media no-video">
-      <img src="fpga_cover.jpeg" alt="FPGA Sequence Detector on Basys3 board">
-    </div>
-    <div class="proj-info">
-      <div class="proj-index">P/03 &middot; DIGITAL LOGIC</div>
-      <h3>FPGA ALU and Sequence Detector</h3>
-      <div class="proj-dates">January 2026 &ndash; May 2026</div>
-      <p>A Mini ALU in Verilog supporting eight arithmetic and logical operations on 6 bit twos complement inputs, built from a carry ripple adder and targeted to the Basys3 board. Plus a sequence detector using a Moore FSM, LFSR, and counter to find a codeword inside a pseudorandom bitstream, with output on the 7 segment display and LEDs.</p>
-      <div class="tags">
-        <span class="tag">Verilog</span><span class="tag">Xilinx Vivado</span><span class="tag">Basys3</span><span class="tag">FSM Design</span>
-      </div>
-      <div class="proj-links">
-        <a href="https://github.com/Sxhail/fpga-lfsr-sequence-detector" target="_blank" rel="noopener">View repository &rarr;</a>
-      </div>
-    </div>
-  </article>
-
-  <!-- Morse Code Game -->
-  <article class="project reveal">
-    <div class="proj-media" data-video="1VPm0qSTfbNMkaIep82k_32DtkvIbCKeT">
-      <img src="https://drive.google.com/thumbnail?id=1VPm0qSTfbNMkaIep82k_32DtkvIbCKeT&sz=w1000" alt="Morse Code Game on Maker Pi Pico demo thumbnail">
-      <span class="play-tag">&#9654; DEMO</span>
-    </div>
-    <div class="proj-info">
-      <div class="proj-index">P/04 &middot; EMBEDDED</div>
-      <h3>Morse Code Game</h3>
-      <div class="proj-dates">February 2026 &ndash; April 2026</div>
-      <p>An interactive embedded game with four difficulty levels on a Maker Pi Pico. A GPIO interrupt handler written in ARM assembly detects Morse input from button press durations. Timing logic, dot and dash classification, character decoding, RGB LED feedback, and a Watchdog Timer reset run in a mixed C and assembly codebase with clean layer separation.</p>
-      <div class="tags">
-        <span class="tag">C</span><span class="tag">ARM Assembly</span><span class="tag">Raspberry Pi Pico</span><span class="tag">GPIO Interrupts</span>
-      </div>
-      <div class="proj-links">
-        <button class="watch-btn" data-video="1VPm0qSTfbNMkaIep82k_32DtkvIbCKeT">Watch demo &rarr;</button>
-      </div>
-    </div>
-  </article>
-
-  <!-- DubAI -->
-  <article class="project reveal">
-    <div class="proj-media no-video">
-      <img src="DubAI_cover.jpg" alt="DubAI app screenshot">
-    </div>
-    <div class="proj-info">
-      <div class="proj-index">P/05 &middot; VOICE AI</div>
-      <h3>DubAI</h3>
-      <div class="proj-dates">May 2025 &ndash; June 2025</div>
-      <p>A multilingual voice AI pipeline combining speech recognition, LLM inference, and text to speech into one deployable system for automating conversational guest interactions. Handles audio encoding, language routing, and response streaming across sequential API calls for real time localised responses at scale.</p>
-      <div class="tags">
-        <span class="tag">Python</span><span class="tag">OpenAI API</span><span class="tag">AWS Polly</span><span class="tag">LLM Pipelines</span>
-      </div>
-    </div>
-  </article>
-
-  <!-- LeetTracker -->
-  <article class="project reveal">
-    <div class="proj-media no-video">
-      <img src="leettracker_cover.png" alt="LeetTracker terminal output">
-    </div>
-    <div class="proj-info">
-      <div class="proj-index">P/06 &middot; AUTOMATION</div>
-      <h3>LeetTracker</h3>
-      <div class="proj-dates">July 2025 &ndash; August 2025</div>
-      <p>A Python automation tool that tracks LeetCode progress via GraphQL and REST APIs. Cron scheduled, it fetches submission data and outputs structured progress tables straight to the terminal.</p>
-      <div class="tags">
-        <span class="tag">Python</span><span class="tag">GraphQL</span><span class="tag">REST APIs</span><span class="tag">Cron Jobs</span>
-      </div>
-      <div class="proj-links">
-        <a href="https://github.com/Sxhail/leetcoder" target="_blank" rel="noopener">View repository &rarr;</a>
-      </div>
-    </div>
-  </article>
-
-  <!-- Claims & Risk Console -->
-  <article class="project reveal">
-    <div class="proj-media no-video">
-      <img src="claims_dashboard_cover.svg" alt="Claims and Risk Console dashboard preview">
-    </div>
-    <div class="proj-info">
-      <div class="proj-index">P/07 &middot; RISK ANALYTICS</div>
-      <h3>Claims &amp; Risk Console</h3>
-      <div class="proj-dates">May 2026</div>
-      <p>An interactive risk analytics dashboard built over a public motor insurance claims book, framed the way a risk advisory team reads a portfolio. Six live KPIs, a weekly severity trend, fraud incidence by damage severity, a loss ratio heat map by state, and a vehicle make exposure table. Every chart doubles as a filter, so the whole board recomputes against any slice of the book with a single click.</p>
-      <div class="tags">
-        <span class="tag">JavaScript</span><span class="tag">PowerBI</span><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Data Visualisation</span>
-      </div>
-      <div class="proj-links">
-        <a href="claims-risk-dashboard.html" target="_blank" rel="noopener">Launch dashboard &rarr;</a>
-      </div>
-    </div>
-  </article>
-</section>
-
+<article class="project reveal">
+<div class="proj-media" data-video="1u4Z9S3IxXZcwqljoGFmzPLW59tvHfIDC">
+<img alt="OPERATOR fitness app screenshot" src="protocol_cover.jpeg"/>
+<span class="play-tag">▶ DEMO</span>
+</div>
+<div class="proj-info">
+<div class="proj-index">P/01 · IN PRODUCTION</div>
+<h3>OPERATOR</h3>
+<div class="proj-dates">July 2025 – present</div>
+<p>A hybrid training app built around structured programs for strength and running. It combines guided workout sessions, weekly training plans, progress tracking, and live GPS run tracking so users can follow a complete program and review both gym and outdoor performance in one place.</p>
+<div class="tags">
+<span class="tag">React Native</span><span class="tag">TypeScript</span><span class="tag">Node.js</span><span class="tag">SQLite</span>
+</div>
+<div class="proj-links">
+<button class="watch-btn" data-video="1u4Z9S3IxXZcwqljoGFmzPLW59tvHfIDC">Watch demo →</button>
+</div>
+</div>
+</article><article class="project reveal">
+<div class="proj-media no-video">
+<div class="proj-placeholder">
+<div class="ph-kicker">AI-FIRST VIDEO TOOLING</div>
+<div class="ph-title">MOTION<br/>EDITOR</div>
+<div class="ph-stack">MCP / WebCodecs / GSAP / Cloudflare</div>
+</div>
+</div>
+<div class="proj-info">
+<div class="proj-index">P/02 · VIDEO SYSTEMS</div>
+<h3>MOTION EDITOR</h3>
+<div class="proj-dates">August 2026 – present</div>
+<p>A short-form video editor for creating polished vertical videos with AI while keeping full manual control. AI tools connect through MCP to build and edit scenes, text, images, motion, and audio inside the editor; the user can then review the result, adjust it visually on the timeline, and export the finished video to MP4 in the browser.</p>
+<div class="tags"><span class="tag">JavaScript</span><span class="tag">MCP</span><span class="tag">GSAP</span><span class="tag">WebCodecs</span><span class="tag">Cloudflare Workers</span></div>
+</div>
+</article><article class="project reveal">
+<div class="proj-media no-video">
+<div class="proj-placeholder">
+<div class="ph-kicker">PERSONAL EXECUTION OS</div>
+<div class="ph-title">REGIMEN</div>
+<div class="ph-stack">Planning / Tasks / Habits / Focus</div>
+</div>
+</div>
+<div class="proj-info">
+<div class="proj-index">P/03 · MOBILE / WEB</div>
+<h3>REGIMEN</h3>
+<div class="proj-dates">July 2026 – present</div>
+<p>A personal productivity and execution app that brings daily planning, tasks, habits, goals, focus sessions, journaling, and progress tracking into one place. It is built around a daily dashboard and planner so work can be prioritised, moved through a board, tracked over time, and reviewed without jumping between separate apps.</p>
+<div class="tags"><span class="tag">React</span><span class="tag">React Native</span><span class="tag">TypeScript</span><span class="tag">Supabase</span></div>
+</div>
+</article><article class="project reveal">
+<div class="proj-media no-video">
+<div class="proj-placeholder">
+<div class="ph-kicker">CLOUD CREATIVE PLATFORM</div>
+<div class="ph-title">SLIDEWAY</div>
+<div class="ph-stack">Next.js / TypeScript / Supabase / Cloudflare</div>
+</div>
+</div>
+<div class="proj-info">
+<div class="proj-index">P/04 · CLOUD PLATFORM</div>
+<h3>SlideWay</h3>
+<div class="proj-dates">June 2026 – August 2026</div>
+<p>A cloud-based slide and content creation platform with structured project editing, AI-assisted generation, direct publishing workflows, and an MCP-compatible API that lets external agents create, edit, and manage projects programmatically. Built around serverless infrastructure with persistent media and data storage.</p>
+<div class="tags">
+<span class="tag">Next.js</span><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Supabase</span><span class="tag">Cloudflare Workers</span><span class="tag">R2</span><span class="tag">MCP</span>
+</div>
+</div>
+</article><article class="project reveal">
+<div class="proj-media no-video">
+<div class="proj-placeholder">
+<div class="ph-kicker">DESKTOP AGENT</div>
+<div class="ph-title">ALFRED AI</div>
+<div class="ph-stack">Python / Automation / Vision / Agents</div>
+</div>
+</div>
+<div class="proj-info">
+<div class="proj-index">P/05 · AI AUTOMATION</div>
+<h3>Alfred AI</h3>
+<div class="proj-dates">May 2026 – July 2026</div>
+<p>A desktop AI agent that plans and executes multi-step computer tasks through direct APIs, UI automation, and vision-based fallback. A screenshot verification loop validates state after actions, while interrupt handling and recovery logic let tasks fail safely, resume, or be redirected without losing control state.</p>
+<div class="tags">
+<span class="tag">Python</span><span class="tag">Desktop Automation</span><span class="tag">Computer Vision</span><span class="tag">LLM Agents</span>
+</div>
+</div>
+</article><article class="project reveal">
+<div class="proj-media" data-video="1VPm0qSTfbNMkaIep82k_32DtkvIbCKeT">
+<img alt="Morse Code Game on Maker Pi Pico demo thumbnail" src="https://drive.google.com/thumbnail?id=1VPm0qSTfbNMkaIep82k_32DtkvIbCKeT&amp;sz=w1000"/>
+<span class="play-tag">▶ DEMO</span>
+</div>
+<div class="proj-info">
+<div class="proj-index">P/06 · EMBEDDED</div>
+<h3>Morse Code Game</h3>
+<div class="proj-dates">February 2026 – April 2026</div>
+<p>An interactive embedded game with four difficulty levels on a Maker Pi Pico. A GPIO interrupt handler written in ARM assembly detects Morse input from button press durations. Timing logic, dot and dash classification, character decoding, RGB LED feedback, and a Watchdog Timer reset run in a mixed C and assembly codebase with clean layer separation.</p>
+<div class="tags">
+<span class="tag">C</span><span class="tag">ARM Assembly</span><span class="tag">Raspberry Pi Pico</span><span class="tag">GPIO Interrupts</span>
+</div>
+<div class="proj-links">
+<button class="watch-btn" data-video="1VPm0qSTfbNMkaIep82k_32DtkvIbCKeT">Watch demo →</button>
+</div>
+</div>
+</article><article class="project reveal">
+<div class="proj-media no-video">
+<img alt="Satellite Relay Protocol cover" src="CN cover.png"/>
+</div>
+<div class="proj-info">
+<div class="proj-index">P/07 · NETWORKING</div>
+<h3>Satellite Relay Protocol</h3>
+<div class="proj-dates">January 2026 – May 2026</div>
+<p>A custom binary networking protocol built from scratch over raw UDP: 9 byte fixed header, five message types, checksum verification, and stop and wait ARQ. Runs as a three node distributed system across physically separate machines simulating a LEO satellite relay with configurable propagation delay, packet loss, and blackout windows. NACK triggered retransmission handles corruption.</p>
+<div class="tags">
+<span class="tag">Python</span><span class="tag">UDP Sockets</span><span class="tag">Distributed Systems</span><span class="tag">Binary Protocols</span>
+</div>
+<div class="proj-links">
+<a href="https://github.com/Sxhail/wind-turbine-space-station-protocol" rel="noopener" target="_blank">View repository →</a>
+</div>
+</div>
+</article><article class="project reveal">
+<div class="proj-media no-video">
+<img alt="FPGA Sequence Detector on Basys3 board" src="fpga_cover.jpeg"/>
+</div>
+<div class="proj-info">
+<div class="proj-index">P/08 · DIGITAL LOGIC</div>
+<h3>FPGA ALU and Sequence Detector</h3>
+<div class="proj-dates">January 2026 – May 2026</div>
+<p>A Mini ALU in Verilog supporting eight arithmetic and logical operations on 6 bit twos complement inputs, built from a carry ripple adder and targeted to the Basys3 board. Plus a sequence detector using a Moore FSM, LFSR, and counter to find a codeword inside a pseudorandom bitstream, with output on the 7 segment display and LEDs.</p>
+<div class="tags">
+<span class="tag">Verilog</span><span class="tag">Xilinx Vivado</span><span class="tag">Basys3</span><span class="tag">FSM Design</span>
+</div>
+<div class="proj-links">
+<a href="https://github.com/Sxhail/fpga-lfsr-sequence-detector" rel="noopener" target="_blank">View repository →</a>
+</div>
+</div>
+</article><article class="project reveal">
+<div class="proj-media no-video">
+<div class="proj-placeholder">
+<div class="ph-kicker">ANALOG ELECTRONICS</div>
+<div class="ph-title">MOSFET<br/>AMPLIFIER</div>
+<div class="ph-stack">MOSFET / Circuit Analysis / Lab Testing</div>
+</div>
+</div>
+<div class="proj-info">
+<div class="proj-index">P/09 · ANALOG</div>
+<h3>Analog MOSFET Amplifier</h3>
+<div class="proj-dates">October 2025 – December 2025</div>
+<p>An analogue electronics project centred on designing, analysing, and testing a MOSFET amplifier, connecting transistor operating-point behaviour with measured circuit performance and practical laboratory verification.</p>
+<div class="tags">
+<span class="tag">MOSFET</span><span class="tag">Analog Electronics</span><span class="tag">Circuit Analysis</span><span class="tag">Lab Instrumentation</span>
+</div>
+</div>
+</article><article class="project reveal">
+<div class="proj-media no-video">
+<img alt="LeetTracker terminal output" src="leettracker_cover.png"/>
+</div>
+<div class="proj-info">
+<div class="proj-index">P/10 · AUTOMATION</div>
+<h3>LeetTracker</h3>
+<div class="proj-dates">July 2025 – August 2025</div>
+<p>A Python automation tool that tracks LeetCode progress via GraphQL and REST APIs. Cron scheduled, it fetches submission data and outputs structured progress tables straight to the terminal.</p>
+<div class="tags">
+<span class="tag">Python</span><span class="tag">GraphQL</span><span class="tag">REST APIs</span><span class="tag">Cron Jobs</span>
+</div>
+<div class="proj-links">
+<a href="https://github.com/Sxhail/leetcoder" rel="noopener" target="_blank">View repository →</a>
+</div>
+</div>
+</article><article class="project reveal">
+<div class="proj-media no-video">
+<img alt="DubAI app screenshot" src="DubAI_cover.jpg"/>
+</div>
+<div class="proj-info">
+<div class="proj-index">P/11 · VOICE AI</div>
+<h3>DubAI</h3>
+<div class="proj-dates">May 2025 – June 2025</div>
+<p>A multilingual voice AI pipeline combining speech recognition, LLM inference, and text to speech into one deployable system for automating conversational guest interactions. Handles audio encoding, language routing, and response streaming across sequential API calls for real time localised responses at scale.</p>
+<div class="tags">
+<span class="tag">Python</span><span class="tag">OpenAI API</span><span class="tag">AWS Polly</span><span class="tag">LLM Pipelines</span>
+</div>
+</div>
+</article><article class="project reveal">
+<div class="proj-media no-video">
+<div class="proj-placeholder">
+<div class="ph-kicker">EMBEDDED AUTONOMY</div>
+<div class="ph-title">AUTONOMOUS<br/>ROBOT</div>
+<div class="ph-stack">C / Sensors / ZigBee / PCB</div>
+</div>
+</div>
+<div class="proj-info">
+<div class="proj-index">P/12 · ROBOTICS</div>
+<h3>Autonomous Robot</h3>
+<div class="proj-dates">January 2025 – April 2025</div>
+<p>An autonomous mobile robot built around an Arduino-compatible controller that follows a track, detects obstacles with ultrasonic sensing, receives gantry signals through a photodiode amplifier, communicates over XBee/ZigBee, and completes an autonomous parking sequence. The system combines embedded control, sensor integration, motor drive circuitry, and custom PCB work.</p>
+<div class="tags">
+<span class="tag">C/C++</span><span class="tag">Arduino</span><span class="tag">Ultrasonic Sensors</span><span class="tag">ZigBee</span><span class="tag">PCB</span>
+</div>
+</div>
+</article></section>
 <!-- ================= EXPERIENCE ================= -->
 <section id="experience">
-  <div class="sec-label"><b>02</b> Experience</div>
-  <div class="xp">
-
-    <div class="xp-item reveal">
-      <div class="xp-dates">JAN 2026 &ndash; APR 2026 &middot; DUBLIN</div>
-      <h3>Portfolio Analytics Developer</h3>
-      <div class="xp-org">Irish Student Managed Fund</div>
-      <ul>
-        <li>Built a FastAPI backend centralising structured financial data across three investment desks, owning the full system lifecycle from development to production.</li>
-        <li>Designed validation pipelines that caught data inconsistencies before outputs reached decision makers, improving reliability across the team.</li>
-        <li>Managed the system independently with no supervision, shipping iterative improvements while keeping downstream teams unblocked.</li>
-      </ul>
-    </div>
-
-    <div class="xp-item reveal">
-      <div class="xp-dates">DEC 2025 &ndash; MAY 2026 &middot; DUBLIN</div>
-      <h3>Conditions &amp; Modelling Team Member</h3>
-      <div class="xp-org">TF Wind &middot; Floating Wind Challenge</div>
-      <ul>
-        <li>Researched environmental conditions including weather patterns, wave dynamics, and seabed characteristics for offshore wind farm optimisation for the floating wind challenge.</li>
-        <li>Developed computational models to analyse offshore wind performance, contributing to Ireland's renewable energy infrastructure planning.</li>
-        <li>Collaborated on a team project exploring sustainable materials and ecological integration for floating wind turbine foundations, demonstrating understanding of cost efficiency and environmental impact in energy infrastructure.</li>
-      </ul>
-    </div>
-
-    <div class="xp-item reveal">
-      <div class="xp-dates">JUN 2025 &ndash; JUL 2025 &middot; REMOTE</div>
-      <h3>Software Engineering Intern</h3>
-      <div class="xp-org">ZNotes</div>
-      <ul>
-        <li>Contributed features to a production platform serving 50,000+ users across 150 countries, working in a live codebase with real consequences for breakage.</li>
-        <li>Delivered independently in a fully remote setting, managing my own tasks and communicating clearly without day to day oversight.</li>
-      </ul>
-    </div>
-
-  </div>
+<div class="sec-label"><b>02</b> Experience</div>
+<div class="xp">
+<div class="xp-item reveal">
+<div class="xp-dates">JAN 2026 – APR 2026 · DUBLIN</div>
+<h3>Portfolio Analytics Developer</h3>
+<div class="xp-org">Irish Student Managed Fund</div>
+<ul>
+<li>Built a FastAPI backend centralising structured financial data across three investment desks, owning the full system lifecycle from development to production.</li>
+<li>Designed validation pipelines that caught data inconsistencies before outputs reached decision makers, improving reliability across the team.</li>
+<li>Managed the system independently with no supervision, shipping iterative improvements while keeping downstream teams unblocked.</li>
+</ul>
+</div>
+<div class="xp-item reveal">
+<div class="xp-dates">DEC 2025 – MAY 2026 · DUBLIN</div>
+<h3>Conditions &amp; Modelling Team Member</h3>
+<div class="xp-org">TF Wind · Floating Wind Challenge</div>
+<ul>
+<li>Researched environmental conditions including weather patterns, wave dynamics, and seabed characteristics for offshore wind farm optimisation for the floating wind challenge.</li>
+<li>Developed computational models to analyse offshore wind performance, contributing to Ireland's renewable energy infrastructure planning.</li>
+<li>Collaborated on a team project exploring sustainable materials and ecological integration for floating wind turbine foundations, demonstrating understanding of cost efficiency and environmental impact in energy infrastructure.</li>
+</ul>
+</div>
+<div class="xp-item reveal">
+<div class="xp-dates">JUN 2025 – JUL 2025 · REMOTE</div>
+<h3>Software Engineering Intern</h3>
+<div class="xp-org">ZNotes</div>
+<ul>
+<li>Contributed features to a production platform serving 50,000+ users across 150 countries, working in a live codebase with real consequences for breakage.</li>
+<li>Delivered independently in a fully remote setting, managing my own tasks and communicating clearly without day to day oversight.</li>
+</ul>
+</div>
+</div>
 </section>
-
 <!-- ================= SKILLS ================= -->
 <section id="skills">
-  <div class="sec-label"><b>03</b> Skills</div>
-  <div class="skills-grid">
-    <div class="skill-group reveal">
-      <h3>Languages</h3>
-      <div class="tags"><span class="tag">Python</span><span class="tag">TypeScript</span><span class="tag">JavaScript</span><span class="tag">C</span><span class="tag">SQL</span><span class="tag">Bash</span><span class="tag">Verilog</span><span class="tag">ARM Assembly</span></div>
-    </div>
-    <div class="skill-group reveal">
-      <h3>Hardware &amp; Embedded</h3>
-      <div class="tags"><span class="tag">FPGA / Vivado</span><span class="tag">ARM Embedded</span><span class="tag">Digital Logic</span><span class="tag">Basys3</span><span class="tag">Raspberry Pi Pico</span><span class="tag">GDB</span></div>
-    </div>
-    <div class="skill-group reveal">
-      <h3>Systems &amp; Networking</h3>
-      <div class="tags"><span class="tag">UDP Sockets</span><span class="tag">Distributed Systems</span><span class="tag">Multithreading</span><span class="tag">Binary Protocols</span><span class="tag">Linux</span></div>
-    </div>
-    <div class="skill-group reveal">
-      <h3>Backend &amp; Data</h3>
-      <div class="tags"><span class="tag">FastAPI</span><span class="tag">Node.js</span><span class="tag">REST APIs</span><span class="tag">SQLite</span><span class="tag">Data Pipelines</span><span class="tag">GraphQL</span></div>
-    </div>
-    <div class="skill-group reveal">
-      <h3>Frontend &amp; Mobile</h3>
-      <div class="tags"><span class="tag">React Native</span><span class="tag">React</span><span class="tag">Expo</span><span class="tag">HTML/CSS</span></div>
-    </div>
-    <div class="skill-group reveal">
-      <h3>AI / ML</h3>
-      <div class="tags"><span class="tag">OpenAI API</span><span class="tag">AWS Polly</span><span class="tag">scikit-learn</span><span class="tag">Prompt Engineering</span><span class="tag">LLM Integration</span><span class="tag">Computer Vision</span></div>
-    </div>
-    <div class="skill-group reveal">
-      <h3>Infra &amp; Tools</h3>
-      <div class="tags"><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">AWS</span><span class="tag">Figma</span><span class="tag">Microsoft Office</span></div>
-    </div>
-    <div class="skill-group reveal">
-      <h3>Ways of Working</h3>
-      <div class="tags"><span class="tag">Independent Delivery</span><span class="tag">Remote Collaboration</span><span class="tag">Cross Functional Communication</span><span class="tag">Project Ownership</span><span class="tag">Problem Solving</span><span class="tag">Iterative Development</span></div>
-    </div>
-  </div>
+<div class="sec-label"><b>03</b> Skills</div>
+<div class="skills-grid"><div class="skill-group reveal"><h3>Languages</h3><div class="tags"><span class="tag">Python</span><span class="tag">TypeScript</span><span class="tag">JavaScript</span><span class="tag">C/C++</span><span class="tag">SQL</span><span class="tag">Bash</span><span class="tag">Verilog</span><span class="tag">ARM Assembly</span></div></div><div class="skill-group reveal"><h3>Hardware &amp; Embedded</h3><div class="tags"><span class="tag">FPGA / Vivado</span><span class="tag">Digital Logic</span><span class="tag">Raspberry Pi Pico</span><span class="tag">Arduino</span><span class="tag">PCB Design</span><span class="tag">Sensors</span><span class="tag">ZigBee / XBee</span><span class="tag">Analog Electronics</span></div></div><div class="skill-group reveal"><h3>Systems &amp; Networking</h3><div class="tags"><span class="tag">Linux</span><span class="tag">Computer Networks</span><span class="tag">UDP Sockets</span><span class="tag">TCP/IP</span><span class="tag">Distributed Systems</span><span class="tag">Binary Protocols</span><span class="tag">Multithreading</span><span class="tag">Desktop Automation</span></div></div><div class="skill-group reveal"><h3>Backend &amp; Data</h3><div class="tags"><span class="tag">FastAPI</span><span class="tag">Node.js</span><span class="tag">REST APIs</span><span class="tag">GraphQL</span><span class="tag">SQLite</span><span class="tag">Supabase</span><span class="tag">Data Pipelines</span><span class="tag">MCP</span></div></div><div class="skill-group reveal"><h3>Frontend &amp; Mobile</h3><div class="tags"><span class="tag">React</span><span class="tag">React Native</span><span class="tag">Next.js</span><span class="tag">Expo</span><span class="tag">HTML/CSS</span></div></div><div class="skill-group reveal"><h3>AI &amp; Media</h3><div class="tags"><span class="tag">LLM / Agent Tooling</span><span class="tag">Computer Vision</span><span class="tag">OpenAI API</span><span class="tag">AWS Polly</span><span class="tag">scikit-learn</span><span class="tag">WebCodecs</span><span class="tag">Web Audio</span><span class="tag">GSAP</span></div></div><div class="skill-group reveal"><h3>Cloud &amp; Tools</h3><div class="tags"><span class="tag">Cloudflare Workers</span><span class="tag">R2</span><span class="tag">AWS</span><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">CI/CD</span><span class="tag">Wrangler</span><span class="tag">Figma</span></div></div><div class="skill-group reveal"><h3>Ways of Working</h3><div class="tags"><span class="tag">Project Ownership</span><span class="tag">Problem Solving</span><span class="tag">Independent Delivery</span><span class="tag">Remote Collaboration</span><span class="tag">Code Review</span><span class="tag">Technical Documentation</span></div></div></div>
 </section>
-
 <!-- ================= CONTACT ================= -->
 <section id="contact">
-  <div class="sec-label"><b>04</b> Contact</div>
-  <div class="contact-wrap reveal">
-    <h2>Let's talk.</h2>
-    <p>The fastest way to reach me is email, or we can connect on LinkedIn.</p>
-    <ul class="contact-list">
-      <li><span class="k">Email</span><a href="mailto:suhailjameel7@gmail.com">suhailjameel7@gmail.com</a></li>
-      <li><span class="k">Phone</span><a href="tel:+353899878441">+353 89 987 8441</a></li>
-      <li><span class="k">GitHub</span><a href="https://github.com/Sxhail" target="_blank" rel="noopener">github.com/Sxhail</a></li>
-      <li><span class="k">LinkedIn</span><a href="https://www.linkedin.com/in/suhail-jameel-34285b268/" target="_blank" rel="noopener">linkedin.com/in/suhail-jameel</a></li>
-      <li><span class="k">Location</span><span>Dublin, Ireland</span></li>
-    </ul>
-  </div>
-</section>
-
-<footer>
-  <span>&#169; 2026 Suhail Jameel</span>
-  <span>Built by hand. Hosted on GitHub Pages.</span>
-</footer>
-
-<!-- ================= VIDEO MODAL ================= -->
-<div class="modal" id="videoModal" role="dialog" aria-modal="true" aria-label="Demo video">
-  <div class="modal-box">
-    <button class="modal-close" id="modalClose">CLOSE &#10005;</button>
-    <iframe id="modalFrame" src="" allow="autoplay" allowfullscreen title="Project demo video"></iframe>
-  </div>
+<div class="sec-label"><b>04</b> Contact</div>
+<div class="contact-wrap reveal">
+<h2>Let's talk.</h2>
+<p>The fastest way to reach me is email, or we can connect on LinkedIn.</p>
+<ul class="contact-list">
+<li><span class="k">Email</span><a href="mailto:suhailjameel7@gmail.com">suhailjameel7@gmail.com</a></li>
+<li><span class="k">Phone</span><a href="tel:+353899878441">+353 89 987 8441</a></li>
+<li><span class="k">GitHub</span><a href="https://github.com/Sxhail" rel="noopener" target="_blank">github.com/Sxhail</a></li>
+<li><span class="k">LinkedIn</span><a href="https://www.linkedin.com/in/suhail-jameel-34285b268/" rel="noopener" target="_blank">linkedin.com/in/suhail-jameel</a></li>
+<li><span class="k">Location</span><span>Dublin, Ireland</span></li>
+</ul>
 </div>
-
+</section>
+<footer>
+<span>© 2026 Suhail Jameel</span>
+<span>Built by hand. Hosted on GitHub Pages.</span>
+</footer>
+<!-- ================= VIDEO MODAL ================= -->
+<div aria-label="Demo video" aria-modal="true" class="modal" id="videoModal" role="dialog">
+<div class="modal-box">
+<button class="modal-close" id="modalClose">CLOSE ✕</button>
+<iframe allow="autoplay" allowfullscreen="" id="modalFrame" src="" title="Project demo video"></iframe>
+</div>
+</div>
 <script>
 // ---------- theme toggle ----------
 const root = document.documentElement;
